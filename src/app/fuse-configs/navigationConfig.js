@@ -6,6 +6,21 @@ const navigationConfig = [
         'icon'    : 'apps',
         'children': [
             {
+                'id'   : 'board-component',
+                'title': 'Board',
+                'type' : 'item',
+                'icon' : 'whatshot',
+                'url'  : '/board'
+            }
+        ]
+    },
+/*     {
+        'id'      : 'applications',
+        'title'   : 'Applications',
+        'type'    : 'group',
+        'icon'    : 'apps',
+        'children': [
+            {
                 'id'   : 'example-component',
                 'title': 'Example',
                 'type' : 'item',
@@ -13,7 +28,8 @@ const navigationConfig = [
                 'url'  : '/example'
             }
         ]
-    }
+    }, */
+    
 ];
 
 export default navigationConfig;
