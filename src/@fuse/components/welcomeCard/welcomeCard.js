@@ -10,8 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    minWidth: 345,
+    maxWidth: 300,
+    minWidth: 300,
     textAlign: "center"
   },
   iconContainer: {
@@ -29,9 +29,11 @@ const useStyles = makeStyles({
   title: {
     paddingTop: "2rem",
     textTransform: "uppercase",
-    fontSize: "1vw",
+    fontSize: "16px",
     fontWeight: "bold",
-    color: "grey"
+    color: "#596377",
+    fontFamily: "Manrope",
+    letterSpacing: ".425px"
   },
   button: {}
 });

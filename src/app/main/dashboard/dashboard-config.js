@@ -1,13 +1,29 @@
 import Dashboard from "../dashboard";
-// import {authRoles} from 'app/auth';
+import {authRoles} from 'app/auth';
 
 export const BoardConfig = {
   settings: {
     layout: {
-      config: {}
+        config: {
+            navbar        : {
+                display: true
+            },
+            toolbar       : {
+                display: true
+            },
+            footer        : {
+                display: false
+            },
+            leftSidePanel : {
+                display: true
+            },
+            rightSidePanel: {
+                display: false
+            }
+        }
     }
   },
-  // auth  : authRoles.onlyGuest,
+  auth  : authRoles.onlyGuest,
   routes: [
     {
       path: "/dashboard",
@@ -15,24 +31,3 @@ export const BoardConfig = {
     }
   ]
 };
-
-/**
- * Lazy load Example
- */
-/*
-import React from 'react';
-
-export const ExampleConfig = {
-    settings: {
-        layout: {
-            config: {}
-        }
-    },
-    routes  : [
-        {
-            path     : '/example',
-            component: React.lazy(() => import('./Example'))
-        }
-    ]
-};
-*/

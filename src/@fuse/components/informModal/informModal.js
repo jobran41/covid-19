@@ -43,7 +43,7 @@ const InformModal = ({ modalAction }) => {
   }
 
   return (
-    <Modal id="Inform" ModalAction={modalAction}>
+    <Modal className="informer" id="Inform" ModalAction={modalAction}>
       <div>formulaire de dénonciation</div>
       <Formik
         initialValues={{

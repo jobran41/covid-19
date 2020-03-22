@@ -41,10 +41,10 @@ function ToolbarLayout1(props)
                     </div>
 
                     <div className="flex">
-
                         <UserMenu/>
 
-                        <div className={classes.separator}/>
+ {/*                    
+                      <div className={classes.separator}/>
 
                         <FuseSearch/>
 
@@ -56,7 +56,7 @@ function ToolbarLayout1(props)
 
                         <div className={classes.separator}/>
 
-                        <QuickPanelToggleButton/>
+                        <QuickPanelToggleButton/> */}
                     </div>
 
                     {config.navbar.display && config.navbar.position === 'right' && (
