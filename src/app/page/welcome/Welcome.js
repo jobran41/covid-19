@@ -22,7 +22,7 @@ class Welcome extends Component {
           Une application qui va renforcer la connexion entre les citoyens et le
           gouvernement{" "}
         </div>
-        <GroupedWelcomeCards></GroupedWelcomeCards>
+         <GroupedWelcomeCards/>
       </div>
     );
   }
