@@ -21,7 +21,7 @@ const routes = [
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs),
   {
     path: "/",
-    component: () => <Redirect to="/register" />
+    component: () => <Redirect to="/welcome" />
   }
 ];
 
