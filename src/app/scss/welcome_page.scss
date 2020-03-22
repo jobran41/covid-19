@@ -1,5 +1,7 @@
 /*imports*/
 @import "variables";
+/*import arabic Google Font*/
+@import url('https://fonts.googleapis.com/css?family=Tajawal&display=swap');
 
 /*Style*/
 .welcome-page {
@@ -134,7 +136,121 @@
       }
     }
   }
-  /*PATIENT POPUP*/
+}
+/*PATIENT POPUP*/
+.patientForm, .informer {
+  .MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.27);
+  }
+  .MuiDialog-container {
+    .MuiPaper-root {
+      -webkit-box-shadow: 0 0 35px 1px rgba(0,0,0,0.1);
+      -moz-box-shadow: 0 0 35px 1px rgba(0,0,0,0.1);
+      box-shadow: 0 0 35px 1px rgba(0,0,0,0.1);
+      .modal-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+        border-bottom: 1px solid #CECECE;
+        h4 {
+          color: #93A2A8;
+          font-size: 14px;
+          align-self: center;
+          text-transform: uppercase;
+        }
+        button {
+          color: #93A2A8;
+          font-size: 16px;
+          line-height: 19px;
+          border: 1px solid #CECECE;
+          border-radius: 50px;
+          height: 35px;
+          width: 35px;
+          font-family: "Manrope", sans-serif;
+          align-self: center;
+        }
+      }
+      .modal-content {
+        padding: 20px;
+        .personnal-question-title {
+          color: #596377;
+          font-size: 22px;
+          font-family: "Manrope", sans-serif;
+          font-weight: bold;
+          margin: 28px 0;
+        }
+        .form-title {
+          color: #596377;
+          font-size: 22px;
+          font-family: "Manrope", sans-serif;
+          font-weight: bold;
+          margin: 28px 0;
+        }
+        .question-list {
+          h4 {
+            color: #596377;
+            font-size: 22px;
+            font-family: "Manrope", sans-serif;
+            font-weight: bold;
+            margin: 28px 0;
+          }
+          .question-item {
+            margin: 10px 0;
+            border-bottom: 1px solid rgba(206, 206, 206, 0.20);
+          h5 {
+              font-family: "Manrope", sans-serif;
+              font-size: 16px;
+              color: #596377;
+              font-weight: normal;
+              margin-bottom: 6px;
+            }
+            .arabic-question {
+              font-family: 'Tajawal', sans-serif;
+              font-size: 18px;
+              text-align: right;
+              margin-bottom: 6px;
+              color: #596377;
+            }
+          }
+        }
+        .action-buttons {
+          text-align: center;
+          button {
+            border-radius: 50px;
+            padding: 10px 30px;
+            margin: 12px;
+          }
+          .cancel {
 
-  /*INFORMANT POPUP*/
+          }
+          .submit {
+            background-color: #11B683;
+            box-shadow: none;
+          }
+        }
+
+      }
+    }
+  }
+}
+/*INFORMANT POPUP*/
+.d-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.browse-wrapper {
+  width: 100%;
+  display: block;
+  .browse-file {
+    border-radius: 50px;
+    padding: 16px 35px;
+    background-color: #fff;
+    box-shadow: none;
+    border: 1px solid #5c616e;
+    img {
+      padding-right: 10px;
+    }
+  }
 }

@@ -29,7 +29,7 @@ import DateFnsUtils from "@date-io/date-fns";
 
 const helpers = [
   {
-    section: "Question Generale",
+    section: "1- Questions Generales",
     questions: [
       {
         id: 1,
@@ -164,7 +164,7 @@ const helpers = [
     ]
   },
   {
-    section: "section Medical",
+    section: "2- Section Médicale",
     questions: [
       {
         id: 18,
@@ -236,10 +236,14 @@ const PatientFormModal = ({ modalAction,history }) => {
 
   return (
     <Modal className="patientForm" id="PatientForm" ModalAction={modalAction}>
-      <button onClick={() => handleClose("PatientForm")}>close </button>
+      <div className="modal-header">
+        <h4>FORMULAIRE DE MALADIE</h4>
+        <button onClick={() => handleClose("PatientForm")}>x</button>
+      </div>
+      <div className="modal-content">
       {helpers.map(el => {
         return (
-          <>
+          <div className="question-list">
             <h4>{el.section}</h4>
             {el.questions.map(elem => (
               <QuestionEducation
@@ -249,10 +253,10 @@ const PatientFormModal = ({ modalAction,history }) => {
                 description={elem.ar_value}
               />
             ))}
-          </>
+          </div>
         );
       })}
-      <h3>Donner Personnel</h3>
+      <h4 className="personnal-question-title">3- Données Personnelles</h4>
       <Formik
         initialValues={{
           email: "",
@@ -311,6 +315,9 @@ const PatientFormModal = ({ modalAction,history }) => {
                   label="Nom"
                   name="nom"
                   variant="outlined"
+                  style={{
+                    margin: "0 12px"
+                  }}
                 />
                 <Field
                   component={TextField}
@@ -318,6 +325,9 @@ const PatientFormModal = ({ modalAction,history }) => {
                   label="Prenom"
                   name="prenom"
                   variant="outlined"
+                  style={{
+                    margin: "0 12px"
+                  }}
                 />
               </div>
               <div
@@ -331,6 +341,9 @@ const PatientFormModal = ({ modalAction,history }) => {
                   label="Cin"
                   name="cin"
                   variant="outlined"
+                  style={{
+                    margin: "0 12px"
+                  }}
                 />
                 <Field
                   component={TextField}
@@ -338,6 +351,9 @@ const PatientFormModal = ({ modalAction,history }) => {
                   label="Adress"
                   name="adresse"
                   variant="outlined"
+                  style={{
+                    margin: "0 12px"
+                  }}
                 />
               </div>
 
@@ -351,6 +367,9 @@ const PatientFormModal = ({ modalAction,history }) => {
                   name="email"
                   type="email"
                   label="Email"
+                  style={{
+                    margin: "0 12px"
+                  }}
                 />
                 <Field
                   component={TextField}
@@ -358,33 +377,38 @@ const PatientFormModal = ({ modalAction,history }) => {
                   label="Numerode telephone"
                   name="adresse"
                   variant="outlined"
+                  style={{
+                    margin: "0 12px"
+                  }}
                 />
               </div>
-              <div>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  disabled={isSubmitting}
-                  onClick={()=>{
-                    submitForm()
-                    history.push('/envoiyer/jo')
-                  }}
-                >
-                  Valider
-                </Button>
-                <Button
-                  variant="contained"
+              <div className="action-buttons">
+                <Button className="cancel"
+                  variant="outlined"
                   color="primary"
                   disabled={isSubmitting}
                   onClick={resetForm}
                 >
                   Annuler
                 </Button>
+                <Button
+                    className="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={isSubmitting}
+                    onClick={()=>{
+                      submitForm()
+                      history.push('/envoiyer/jo')
+                    }}
+                >
+                  Valider
+                </Button>
               </div>
             </Form>
           </MuiPickersUtilsProvider>
         )}
       />
+      </div>
     </Modal>
   );
 };

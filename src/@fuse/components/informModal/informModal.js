@@ -4,6 +4,7 @@ import { Modal } from "@fuse";
 import { Formik, Form, Field } from "formik";
 import { Button } from "@material-ui/core";
 import MuiTextField from "@material-ui/core/TextField";
+import upload from "../../../app/img/upload-icon.svg";
 import {
   fieldToTextField,
   TextField,
@@ -44,7 +45,11 @@ const InformModal = ({ modalAction }) => {
 
   return (
     <Modal className="informer" id="Inform" ModalAction={modalAction}>
-      <div>formulaire de dénonciation</div>
+      <div className="modal-header">
+        <h4>formulaire de dénonciation</h4>
+        <button onClick={() => handleClose("Inform")}>x</button>
+      </div>
+      <div className="modal-content">
       <Formik
         initialValues={{
           emailDenonciateur: "",
@@ -125,13 +130,13 @@ const InformModal = ({ modalAction }) => {
         }) => (
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Form>
-              <h2>1.Données du dénonciateur</h2>
-              <div
+              <h4 className="form-title">1- Données du dénonciateur</h4>
+              <div className="d-flex"
                 style={{
                   margin: 10
                 }}
               >
-                <div>
+                <div className="p-5">
                   <div> Nom</div>
                   <Field
                     component={TextField}
@@ -140,7 +145,7 @@ const InformModal = ({ modalAction }) => {
                     variant="outlined"
                   />
                 </div>
-                <div>
+                <div className="p-5">
                   <div> Prenom</div>
                   <Field
                     component={TextField}
@@ -150,97 +155,131 @@ const InformModal = ({ modalAction }) => {
                   />
                 </div>
               </div>
-              <div
+
+              <div className="d-flex"
                 style={{
                   margin: 10
                 }}
               >
-                <div> CIN</div>
+                <div className="p-5">
+                  <div> CIN</div>
 
-                <Field
-                  component={TextField}
-                  type="text"
-                  name="cinDenonciateur"
-                  variant="outlined"
-                />
+                  <Field
+                      component={TextField}
+                      type="text"
+                      name="cinDenonciateur"
+                      variant="outlined"
+                  />
+                </div>
+                <div className="p-5">
+                  <div> Adresse</div>
+                  <Field
+                      component={TextField}
+                      type="text"
+                      name="adresseDenonciateur"
+                      variant="outlined"
+                  />
+                </div>
+              </div>
+              <div className="d-flex"
+                style={{
+                  margin: 10
+                }}
+              >
+                <div className="p-5">
+                  <div> Code Postal</div>
+
+                  <Field
+                      component={TextField}
+                      name="codePostalDenonciateur"
+                      label="code Postal"
+                      variant="outlined"
+                  />
+                </div>
+                <div className="p-5">
+                  <div> numéro de téléphone</div>
+                  <Field
+                      component={TextField}
+                      type="text"
+                      name="numeroDenonciateur"
+                      variant="outlined"
+                  />
+                </div>
+              </div>
+              <h4 className="form-title">2- Données du coupable</h4>
+              <div className="d-flex"
+                style={{
+                  margin: 10
+                }}
+              >
+                <div className="p-5">
+                  <div> Nom</div>
+
+                  <Field
+                      component={TextField}
+                      type="text"
+                      name="nomCoupable"
+                      variant="outlined"
+                  />
+                </div>
+                <div className="p-5">
+                  <div> Prénom</div>
+                  <Field
+                      component={TextField}
+                      type="text"
+                      name="prenomCoupable"
+                      variant="outlined"
+                  />
+                </div>
+              </div>
+              <div className="p-5">
                 <div> Adresse</div>
-
                 <Field
-                  component={TextField}
-                  type="text"
-                  name="adresseDenonciateur"
-                  variant="outlined"
+                    component={TextField}
+                    type="text"
+                    name="adresseCoupable"
+                    variant="outlined"
+                    style={{
+                      width: "100%"
+                    }}
                 />
               </div>
-              <div
-                style={{
-                  margin: 10
-                }}
-              >
-                <div> Code Postal</div>
-
+              <div className="p-5">
+                <div> Commentaire</div>
                 <Field
-                  component={TextField}
-                  name="codePostalDenonciateur"
-                  label="code Postal"
-                  variant="outlined"
-                />
-                <div> numéro de téléphone</div>
-
-                <Field
-                  component={TextField}
-                  type="text"
-                  name="numeroDenonciateur"
-                  variant="outlined"
+                    component={TextField}
+                    type="text"
+                    name="commentaire"
+                    variant="outlined"
+                    style={{
+                      width: "100%"
+                    }}
                 />
               </div>
-              <div
-                style={{
-                  margin: 10
-                }}
-              >
-                <h2>2.Données du coupable</h2>
-                <div> Nom</div>
-
-                <Field
-                  component={TextField}
-                  type="text"
-                  name="nomCoupable"
-                  variant="outlined"
-                />
-                <div> Prénom</div>
-
-                <Field
-                  component={TextField}
-                  type="text"
-                  name="prenomCoupable"
-                  variant="outlined"
-                />
-              </div>
-              <div> Adresse</div>
-              <Field
-                component={TextField}
-                type="text"
-                name="adresseCoupable"
-                variant="outlined"
-              />
-              <div> Commentaire</div>
-              <Field
-                component={TextField}
-                type="text"
-                name="commentaire"
-                variant="outlined"
-              />
-              <div>
-                <Button variant="contained" component="label">
-                  Telecharger un fichier{" "}
+              <div className="browse-wrapper p-5 mt-10 mb-10">
+                <Button className="browse-file" variant="contained" component="label">
+                  <img src={upload} alt=""/>
+                  Parcourir un fichier{" "}
                   <input type="file" style={{ display: "none" }} />
                 </Button>
               </div>
-              <div>
+              <div className="action-buttons">
                 <Button
-                  variant="contained"
-                  color="primary"
+                    className="cancel"
+                    variant="outlined"
+                    color="primary"
+                    disabled={isSubmitting}
+                    onClick={() => {
+                      resetForm();
+                      handleClose("Inform");
+                    }}
+                >
+                  Annuler
+                </Button>
+                <Button
+                    className="submit"
+                    variant="contained"
+                    color="primary"
                   disabled={isSubmitting}
                   onClick={() => {
                     submitForm();
@@ -249,22 +288,12 @@ const InformModal = ({ modalAction }) => {
                 >
                   Valider
                 </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  disabled={isSubmitting}
-                  onClick={() => {
-                    resetForm();
-                    handleClose("Inform");
-                  }}
-                >
-                  Annuler
-                </Button>
               </div>
             </Form>
           </MuiPickersUtilsProvider>
         )}
       />
+      </div>
     </Modal>
   );
 };
