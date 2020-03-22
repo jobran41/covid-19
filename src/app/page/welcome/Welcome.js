@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import history from "@history";
 import { GroupedWelcomeCards } from "@fuse";
@@ -37,9 +38,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const Welcome = props => {
+  const [question, setquestion] = useState([]);
+  const [reponse, setReponse] = useState({
+    firstName: "string",
+    lastName: "string",
+    address: "string",
+    zipCode: 0,
+    phoneNumber: 0,
+    responses: [
+      {
+        value: "string",
+        question: "string"
+      }
+    ]
+  });
   const classes = useStyles();
   const cardProps = [
     {
+      disabled: false,
       title: "Médecin",
       className: "medecin",
       text: "rnfrsgnvmol fgfgb dfgdrg sdgsrgr srgrgr dfv,fd",
@@ -53,6 +69,7 @@ const Welcome = props => {
       }
     },
     {
+      disabled: false,
       title: "Malade",
       className: "malade",
       text:
@@ -65,6 +82,7 @@ const Welcome = props => {
       }
     },
     {
+      disabled: true,
       title: "Informer",
       className: "informer",
       text: "jkfldfbngjeopdfjr rtgdgrdg retgtrgrtd gtrdgrtd eofrleofrgjnl",
@@ -76,7 +94,30 @@ const Welcome = props => {
       }
     }
   ];
+  useEffect(() => {
+    axios
+      .get("http://api.ensembletn.beecoop.co/api/v1/question")
+      .then(res => {
+        if (res && res.data && res.data.payload && res.data.payload.questions) {
+          let cleanData = [];
+          for (let key in res.data.payload.questions) {
+            cleanData.push({
+              section: key,
+              key: key,
+              questions: res.data.payload.questions[key]
+            });
+          }
+          setquestion(cleanData);
+        } else {
+          setquestion([]);
+        }
+      })
+      .catch(err => setquestion(err));
+  }, []);
 
+  const updateResponse = data => {
+    console.log("data", data);
+  };
   return (
     <div className="welcome-page">
       <div className="main-navbar">
@@ -127,13 +168,18 @@ const Welcome = props => {
                     handleClick={item.handleClick}
                     buttonContent={item.buttonContent}
                     src={item.src}
+                    disabled={item.disabled}
                   ></WelcomeCard>
                 </Grid>
               ))}
             </Grid>
           </Grid>
         </Grid>
-        <PatientFormModal modalAction={props.ModalAction} />
+        <PatientFormModal
+          updateResponse={updateResponse}
+          dataModal={question ? question : []}
+          modalAction={props.ModalAction}
+        />
         <InformModal modalAction={props.ModalAction} />
       </div>
     </div>
