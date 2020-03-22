@@ -27,7 +27,8 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import {submitLogin} from "../../auth/store/actions/login.actions"
 import { connect } from "react-redux";
-
+import "../../scss/login_page.scss";
+import logo from "../../img/logo.svg";
 function UpperCasingTextField(props) {
   const {
     form: { setFieldValue },
@@ -56,6 +57,21 @@ const Login = (props) => {
 const [email, setEmail] = React.useState('')
 const [password, setPassword] = React.useState('')
   return (
+      <div className="login-page">
+        <div className="main-navbar">
+          <div className="logo-container">
+            <img className="logo" src={logo} alt="logo" />
+          </div>
+          <div className="go-home">
+              <button className="homepage">
+                  Retour à la page d'accueil
+              </button>
+          </div>
+        </div>
+        <div className="login-text">
+          <h1>Connectez-vous à votre espace docteur</h1>
+          <h4>Cet espace vous permet de voir les demandes envoyées par les citoyens</h4>
+        </div>
   <Formik
     initialValues={{
       email: "",
@@ -89,55 +105,60 @@ const [password, setPassword] = React.useState('')
     }}
     render={({resetForm, submitForm, isSubmitting, values, setFieldValue }) => (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Form style={{
-            width:"50%",
-            margin:"0 auto"
-        }}>
+        <Form className="login-form">
           <div
             style={{
-              margin: 10
+              margin: 10,
+              marginBottom: 30
             }}
           >
-            <Field
-              component={UpperCasingTextField}
-              name="email"
-              type="email"
-              label="Email"
-              value={email}
-              onChange={v=>setEmail(v.target.value.toLowerCase())}
-            />
-            <Field
-              value={password}
-              component={TextField}
-              type="password"
-              label="Password"
-              name="password"
-              variant="outlined"
-              onChange={v=>setPassword(v.target.value)}
-            />
+              <div className="email-container">
+                  <Field className="email-field"
+                      component={UpperCasingTextField}
+                      name="email"
+                      type="email"
+                      label="Email"
+                      value={email}
+                      onChange={v=>setEmail(v.target.value.toLowerCase())}
+                  />
+              </div>
+            <div className="password-container">
+                <Field
+                    className="password-field"
+                    value={password}
+                    component={TextField}
+                    type="password"
+                    label="Mot de passe"
+                    name="password"
+                    variant="outlined"
+                    onChange={v=>setPassword(v.target.value)}
+                />
+            </div>
           </div>
           <div>
             <Button
+              className="login-button"
               variant="contained"
               color="primary"
               disabled={isSubmitting}
               onClick={submitForm}
             >
-              Valider
+              Connexion
             </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting}
-              onClick={resetForm}
-            >
-              clear
-            </Button>
+            {/*<Button*/}
+            {/*  variant="contained"*/}
+            {/*  color="primary"*/}
+            {/*  disabled={isSubmitting}*/}
+            {/*  onClick={resetForm}*/}
+            {/*>*/}
+            {/*  clear*/}
+            {/*</Button>*/}
           </div>
         </Form>
       </MuiPickersUtilsProvider>
     )}
-  />)
+  />
+</div>)
 };
 
 export default  connect(null,{submitLogin})(Login);
