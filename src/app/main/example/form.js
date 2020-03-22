@@ -25,7 +25,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
 
-function UpperCasingTextField(props: TextFieldProps) {
+function UpperCasingTextField(props) {
   const {
     form: { setFieldValue },
     field: { name }
