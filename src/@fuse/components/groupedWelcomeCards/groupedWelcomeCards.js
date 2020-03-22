@@ -31,7 +31,7 @@ function GroupedWelcomeCards(props) {
       src: "assets/images/welcome/doctor.png",
       handleClick: () => {
         history.push({
-          pathname: "/register"
+          pathname: "/login"
         });
       }
     },

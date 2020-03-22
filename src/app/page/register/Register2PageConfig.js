@@ -24,7 +24,7 @@ export const Register2PageConfig = {
     },
     routes  : [
         {
-            path     : '/register',
+            path     : '/login',
             component: React.lazy(() => import('./Register2Page'))
         }
     ]

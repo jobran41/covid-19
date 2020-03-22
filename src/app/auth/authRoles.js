@@ -5,7 +5,7 @@ const authRoles = {
     admin    : ['admin'],
     staff    : ['admin', 'staff'],
     user     : ['admin', 'staff', 'user'],
-    onlyGuest: []
+    onlyGuest: ['medecin']
 };
 
 export default authRoles;

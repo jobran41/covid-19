@@ -1,4 +1,5 @@
 import Board from './Board';
+import {authRoles} from 'app/auth';
 
 export const BoardConfig = {
     settings: {
@@ -6,6 +7,7 @@ export const BoardConfig = {
             config: {}
         }
     },
+    auth  : authRoles.onlyGuest,
     routes  : [
         {
             path     : '/board',

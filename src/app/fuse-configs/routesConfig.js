@@ -5,7 +5,6 @@ import { ExampleConfig } from "app/main/example/ExampleConfig";
 import { Register2PageConfig } from "app/page/register/Register2PageConfig";
 import { WelcomeConfig } from "app/page/welcome/WelcomeConfig";
 import { BoardConfig } from "app/main/board/BoardConfig";
-import { LoginConfig } from "app/page/login/loginConfig";
 import {EnvoiyerConfig} from  "app/page/envoiyer/EnvoiyerConfig"
 
 const routeConfigs = [
@@ -13,7 +12,6 @@ const routeConfigs = [
   Register2PageConfig,
   WelcomeConfig,
   BoardConfig,
-  LoginConfig,
   EnvoiyerConfig
 ];
 
