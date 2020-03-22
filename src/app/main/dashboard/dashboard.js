@@ -45,6 +45,7 @@ const listOfStatus = ["non-traité", "en cours de traitment", "traité"];
 
 const Dashboard = () => {
   const [visible, setVisible] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const filterPatients = status => {
     let currentStatus = "ON_HOLD";
@@ -104,7 +105,16 @@ const Dashboard = () => {
           {renderColumns()}
         </Grid>
         {visible && (
-          <ClaimDialog visible={visible} onClose={() => setVisible(false)} />
+          <ClaimDialog
+            visible={visible}
+            isSent={isSent}
+            onClose={() => {
+              setVisible(false);
+              setIsSent(false);
+            }}
+            onSendSMS={() => setIsSent(true)}
+            onClickNext={() => setIsSent(false)}
+          />
         )}
       </Container>
     </div>
