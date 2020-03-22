@@ -1,0 +1,140 @@
+/*imports*/
+@import "variables";
+
+/*Style*/
+.welcome-page {
+  /*TOP NAVBAR*/
+  .main-navbar {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .logo-container {
+      .logo {
+        max-width: 80px;
+        height: auto;
+        width: 100%;
+      }
+    }
+    .social-container {
+      display: flex;
+      .social-list {
+        align-self: center;
+        padding: 0;
+        list-style: none;
+        li {
+          display: inline-block;
+          margin: 5px;
+          a {
+            display: block;
+            border: 1px solid $gray_border;
+            padding: 12px;
+            line-height: 100%;
+            border-radius: 50%;
+            img {
+              display: block;
+              vertical-align: middle;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .welcome-title {
+    text-align: center;
+    color: $gray_font;
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+  .welcome-subtitle {
+    text-align: center;
+    color: $gray_font;
+    font-size: 16px;
+  }
+  /*Cards*/
+  .card-wrapper {
+    .MuiGrid-container {
+      .MuiGrid-item {
+        .MuiPaper-root {
+          border-top: 6px solid #707070;
+          .MuiCardContent-root {
+            padding-top: 25px;
+            span.MuiSkeleton-circle {
+              background-color: #D1E8FF;
+            }
+            p {
+              font-family: "Manrope", sans-serif;
+              font-size: 14px;
+              line-height: 23px;
+              letter-spacing: .245px;
+            }
+          }
+          .MuiCardActions-root {
+            button {
+              display: block;
+              width: 100%;
+              border: 1px solid #367EE0;
+              padding: 12px 15px;
+              border-radius: 50px;
+              margin: 10px;
+              color: #367EE0;
+              &:hover {
+                background-color: #367EE0;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+      &>.MuiGrid-item:nth-child(2) {
+        .MuiPaper-root {
+          span.MuiSkeleton-circle {
+            background-color: #FFD1D3;
+          }
+          .MuiCardActions-root {
+            button {
+              display: block;
+              width: 100%;
+              border: 1px solid #E23B42;
+              padding: 12px 15px;
+              border-radius: 50px;
+              margin: 10px;
+              color: #E23B42;
+              &:hover {
+                background-color: #E23B42;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+      &>.MuiGrid-item:nth-child(3) {
+        .MuiPaper-root {
+          span.MuiSkeleton-circle {
+            background-color: #A6ECD7;
+          }
+          .MuiCardActions-root {
+            button {
+              display: block;
+              width: 100%;
+              border: 1px solid #11B683;
+              padding: 12px 15px;
+              border-radius: 50px;
+              margin: 10px;
+              color: #11B683;
+              &:hover {
+                background-color: #11B683;
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /*PATIENT POPUP*/
+
+  /*INFORMANT POPUP*/
+}
