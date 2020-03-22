@@ -10,7 +10,7 @@ const navigationConfig = [
                 'title': 'Board',
                 'type' : 'item',
                 'icon' : 'whatshot',
-                'url'  : '/board'
+                'url'  : '/dashboard'
             }
         ]
     },
