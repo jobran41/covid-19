@@ -12,7 +12,7 @@ import MuiTextField from "@material-ui/core/TextField";
 import {
   fieldToTextField,
   TextField,
-  TextFieldProps,
+  TextFieldProps ,
 /*   Select,
   Switch */
 } from "formik-material-ui";
