@@ -15,10 +15,94 @@
 }
 
 .claim-dialog {
+  &-form,
+  &-questions {
+    padding: 32px;
+  }
+
+  &-questions {
+    background: #9e9e9e29;
+    h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .single-question {
+      margin: 8px 0;
+
+      button,
+      .question-textfield {
+        margin: 8px 0 16px 0;
+      }
+
+      .question-textfield {
+        background: #fff;
+
+        input {
+          color: black;
+        }
+      }
+    }
+  }
+
   &-user-info {
     border-bottom: 1px solid #ccc;
   }
   &-message {
-    background: #ddd;
+    padding: 16px;
+    margin: 16px 0;
+    background: #9e9e9e29;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+  }
+
+  .stable {
+    &-active {
+      background: green;
+      color: #fff;
+      border-color: #fff;
+    }
+  }
+  .urgent {
+    &-active {
+      background: orange;
+      color: #fff;
+      border-color: #fff;
+    }
+  }
+  .critique {
+    &-active {
+      background: red;
+      color: #fff;
+      border-color: #fff;
+    }
+  }
+
+  .issent {
+    &-content {
+      text-align: center;
+      padding: 32px;
+    }
+    &-actions {
+      padding: 32px;
+      &-btn {
+        background: green;
+        color: #fff;
+      }
+    }
+  }
+
+  .select-response {
+    margin-bottom: 16px;
+    max-width: 250px;
+  }
+  .text-response {
+    background: #fff;
+  }
+  .conditions {
+    display: flex;
+    justify-content: space-around;
+    margin: 32px 0;
   }
 }
