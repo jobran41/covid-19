@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 const Modal = ({
+  className,
   children,
   id,
   location: { pathname },
@@ -23,7 +24,7 @@ const Modal = ({
         open={modal.modals[id]}
         // onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        className="modal"
+        className={className}
       >
         {children}
       </Dialog>

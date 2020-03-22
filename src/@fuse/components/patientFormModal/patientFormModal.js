@@ -235,7 +235,7 @@ const PatientFormModal = ({ modalAction,history }) => {
   };
 
   return (
-    <Modal id="PatientForm" ModalAction={modalAction}>
+    <Modal className="patientForm" id="PatientForm" ModalAction={modalAction}>
       <button onClick={() => handleClose("PatientForm")}>close </button>
       {helpers.map(el => {
         return (
