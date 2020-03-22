@@ -1,17 +1,19 @@
-import Example from './Board';
+import Dashboard from "../dashboard";
+// import {authRoles} from 'app/auth';
 
-export const ExampleConfig = {
-    settings: {
-        layout: {
-            config: {}
-        }
-    },
-    routes  : [
-        {
-            path     : '/example',
-            component: Example
-        }
-    ]
+export const BoardConfig = {
+  settings: {
+    layout: {
+      config: {}
+    }
+  },
+  // auth  : authRoles.onlyGuest,
+  routes: [
+    {
+      path: "/dashboard",
+      component: Dashboard
+    }
+  ]
 };
 
 /**

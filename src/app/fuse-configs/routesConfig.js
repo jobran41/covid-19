@@ -4,8 +4,8 @@ import { FuseUtils } from "@fuse";
 import { ExampleConfig } from "app/main/example/ExampleConfig";
 import { Register2PageConfig } from "app/page/register/Register2PageConfig";
 import { WelcomeConfig } from "app/page/welcome/WelcomeConfig";
-import { BoardConfig } from "app/main/board/BoardConfig";
-import {EnvoiyerConfig} from  "app/page/envoiyer/EnvoiyerConfig"
+import { BoardConfig } from "app/main/dashboard/dashboard-config";
+import { EnvoiyerConfig } from "app/page/envoiyer/EnvoiyerConfig";
 
 const routeConfigs = [
   ExampleConfig,

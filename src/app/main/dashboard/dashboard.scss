@@ -1,0 +1,24 @@
+//
+
+.dashboard {
+  .columns {
+    .single-column {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+
+  .single-patient {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
+.claim-dialog {
+  &-user-info {
+    border-bottom: 1px solid #ccc;
+  }
+  &-message {
+    background: #ddd;
+  }
+}
