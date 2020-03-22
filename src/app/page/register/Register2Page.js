@@ -1,5 +1,7 @@
 import * as React from "react";
 import { Formik, Form, Field } from "formik";
+import {withRouter} from 'react-router-dom';
+
 import {
   Button,
 /*   LinearProgress,
@@ -23,7 +25,8 @@ import {
 } from "formik-material-ui-pickers"; */
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-
+import {submitLogin} from "../../auth/store/actions/login.actions"
+import { connect } from "react-redux";
 
 function UpperCasingTextField(props) {
   const {
@@ -49,14 +52,14 @@ function UpperCasingTextField(props) {
   );
 }
 
-const App = () => (
+const Login = (props) => {
+const [email, setEmail] = React.useState('')
+const [password, setPassword] = React.useState('')
+  return (
   <Formik
     initialValues={{
       email: "",
-      nom: "",
-      prenom: "",
-      cin: "",
-      adresse: ""
+      password: "",
     }}
     validate={values => {
       const errors = {};
@@ -68,25 +71,21 @@ const App = () => (
       ) {
         errors.email = "Invalid email address";
       }
-      if (values.nom === "") {
-        errors.nom = "Required";
+      if (values.password === "") {
+        errors.password = "Required";
       }
-      if (values.prenom === "") {
-        errors.prenom = "Required";
-      }
-      if (values.cin === "") {
-        errors.cin = "Required";
-      }
-      if (values.adresse === "") {
-        errors.adresse = "Required";
+      if (values.password.length < 8) {
+        errors.password = "password must be 8 caractere";
       }
       return errors;
     }}
     onSubmit={(values, { setSubmitting }) => {
-      setTimeout(() => {
-        setSubmitting(false);
-        alert(JSON.stringify(values, null, 2));
-      }, 500);
+      const {submitLogin}=props
+      console.log('values', values)
+      setSubmitting(false)
+      submitLogin(values).then(res=>{
+        props.history.push('/dashboard')
+      })
     }}
     render={({resetForm, submitForm, isSubmitting, values, setFieldValue }) => (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -104,13 +103,17 @@ const App = () => (
               name="email"
               type="email"
               label="Email"
+              value={email}
+              onChange={v=>setEmail(v.target.value.toLowerCase())}
             />
             <Field
+              value={password}
               component={TextField}
               type="password"
               label="Password"
-              name="Password"
+              name="password"
               variant="outlined"
+              onChange={v=>setPassword(v.target.value)}
             />
           </div>
           <div>
@@ -134,7 +137,7 @@ const App = () => (
         </Form>
       </MuiPickersUtilsProvider>
     )}
-  />
-);
+  />)
+};
 
-export default App;
+export default  connect(null,{submitLogin})(Login);
