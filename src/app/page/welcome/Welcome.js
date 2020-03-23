@@ -96,7 +96,7 @@ const Welcome = props => {
   ];
   useEffect(() => {
     axios
-      .get("http://api.ensembletn.beecoop.co/api/v1/question")
+      .get("https://api.ensembletn.beecoop.co/api/v1/question")
       .then(res => {
         if (res && res.data && res.data.payload && res.data.payload.questions) {
           let cleanData = [];
@@ -148,7 +148,7 @@ console.log('currentSome', currentSome)
     console.log("data submitForm", data);
     const newData={...responses,...data}
     console.log('newData', newData)
-    axios.post('http://api.ensembletn.beecoop.co/api/v1/patient',{...newData})
+    axios.post('https://api.ensembletn.beecoop.co/api/v1/patient',{...newData})
     .then(res=>history.push("/envoiyer/maladie"))
   };
   return (

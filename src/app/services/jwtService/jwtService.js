@@ -62,7 +62,7 @@ class jwtService extends FuseUtils.EventEmitter {
   signInWithEmailAndPassword = (email, password) => {
     return new Promise((resolve, reject) => {
       axios
-        .post("http://api.ensembletn.beecoop.co/api/v1/security/login-check", {
+        .post("https://api.ensembletn.beecoop.co/api/v1/security/login-check", {
           email,
           password
         })

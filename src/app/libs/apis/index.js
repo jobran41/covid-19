@@ -12,7 +12,7 @@ export const getPatient = async () => {
 
 export const getAllPatients = async () => {
   const response = await axios
-    .get("http://api.ensembletn.beecoop.co/api/v1/secured/patient")
+    .get("https://api.ensembletn.beecoop.co/api/v1/secured/patient")
     .catch(err => {
       throw new Error(err);
     });
@@ -23,7 +23,7 @@ export const getAllPatients = async () => {
 export const patchPatient = async (status, guid) => {
   console.log("guid", guid);
   const response = await axios
-    .patch(`http://api.ensembletn.beecoop.co/api/v1/secured/patient/${guid}`, {
+    .patch(`https://api.ensembletn.beecoop.co/api/v1/secured/patient/${guid}`, {
       status: status
     })
     .catch(err => {
