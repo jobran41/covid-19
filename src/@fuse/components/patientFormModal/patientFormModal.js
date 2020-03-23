@@ -71,12 +71,14 @@ const PatientFormModal = ({ modalAction,history,dataModal }) => {
         return (
           <div className="question-list">
             <h4>{el.section}</h4>
-            {el.questions.map(elem => (
+            {el.questions.map((elem,i) => (
               <QuestionEducation
+                index={i}
                 key={elem.id}
                 getState={getAllState}
                 title={elem.fr_value}
                 description={elem.ar_value}
+                {...elem}
               />
             ))}
           </div>

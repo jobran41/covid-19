@@ -87,22 +87,23 @@ class jwtService extends FuseUtils.EventEmitter {
 
     signInWithToken = () => {
         return new Promise((resolve, reject) => {
-            axios.get('/api/auth/access-token', {
-                data: {
-                    access_token: this.getAccessToken()
-                }
-            })
+            const user = parseJwt(this.getAccessToken())
+            if ( user )
+            {
+                this.setSession(this.getAccessToken());
+                resolve(user);
+            }
+            else
+            {
+                reject(user);
+            }
+
+/*             axios.post('http://api.ensembletn.beecoop.co/api/v1/security/token/refresh', {
+                    refreshToken: this.getAccessToken()
+               })
                 .then(response => {
-                    if ( response.data.user )
-                    {
-                        this.setSession(response.data.access_token);
-                        resolve(response.data.user);
-                    }
-                    else
-                    {
-                        reject(response.data.error);
-                    }
-                });
+                    console.log('response', response)
+                }); */
         });
     };
 

@@ -10,12 +10,12 @@ const QuestionEducation = props => {
   const handleClickOui = () => {
     setStateOui(true);
     setStateNon(false);
-    props.getState({ stateNon, stateNon, title: props.title });
+    props.getState({ field:'responses',value:stateOui, stateOui, title: props.title, extraData:props});
   };
   const handleClickNon = () => {
     setStateOui(false);
     setStateNon(true);
-    props.getState({ stateNon, stateNon, title: props.title });
+    props.getState({ field:'responses', value:stateNon, stateNon, title: props.title,extraData:props });
   };
 
   return (

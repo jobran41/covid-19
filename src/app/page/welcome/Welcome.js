@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 }));
 const Welcome = props => {
   const [question, setquestion] = useState([]);
-  const [reponse, setReponse] = useState({
+  const [responses, setReponse] = useState({
     firstName: "string",
     lastName: "string",
     address: "string",
@@ -116,7 +116,11 @@ const Welcome = props => {
   }, []);
 
   const updateResponse = data => {
-    console.log("data", data);
+    const newResponse=responses
+    newResponse[data.field].push({alue: data.value,
+    question: data.extraData.id})
+    console.log('newResponse', newResponse)
+    setReponse(newResponse)
   };
   return (
     <div className="welcome-page">
