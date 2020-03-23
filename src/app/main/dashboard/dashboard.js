@@ -102,10 +102,16 @@ const Dashboard = () => {
             onClose={() => {
               setVisible(false);
               setIsSent(false);
+              getAllPatients().then(res => {
+                setAllPatients(get(res, "data.payload.patients", {}));
+              });
             }}
             onSendSMS={() => {
               setIsSent(true);
               patchPatient("CLOSED", patient.guid);
+              getAllPatients().then(res => {
+                setAllPatients(get(res, "data.payload.patients", {}));
+              });
             }}
             onClickNext={() => {
               setIsSent(false);

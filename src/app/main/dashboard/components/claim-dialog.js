@@ -267,17 +267,19 @@ const ClaimDialog = ({
                   critique
                 </Button>
               </div>
-              <Button
-                variant="outlined"
-                onClick={() => {
-                  onSendSMS();
-                  setCondition(null);
-                  setResponse("");
-                }}
-                disabled={!condition || !response}
-              >
-                envoyer sms
-              </Button>
+              <div className="sms">
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    onSendSMS();
+                    setCondition(null);
+                    setResponse("");
+                  }}
+                  disabled={!condition || !response}
+                >
+                  envoyer sms
+                </Button>
+              </div>
             </div>
           </Grid>
           <Grid item md={6} xs={12}>

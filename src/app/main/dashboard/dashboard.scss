@@ -1,11 +1,33 @@
 //
 
 .dashboard {
+  header {
+    text-align: center;
+    margin: 50px 0 32px 0;
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    button {
+      margin: 32px 0 8px 0;
+      border-radius: 32px;
+      background: #fff;
+      color: #000;
+      padding: 16px 32px;
+    }
+  }
   .columns {
     margin-top: 32px;
     .single-column {
       border: 1px solid #ccc;
       border-radius: 4px;
+
+      .patients {
+        max-height: 480px;
+        overflow: auto;
+      }
 
       &.non-traité {
         border-top: 5px solid #ffc107;
@@ -27,6 +49,7 @@
 
   .single-patient {
     border: 1px solid #ccc;
+    background: #fff;
     border-radius: 4px;
     margin: 16px;
     padding: 16px;
@@ -34,6 +57,10 @@
 }
 
 .claim-dialog {
+  button {
+    border-radius: 24px;
+  }
+
   &-form,
   &-questions {
     padding: 32px;
@@ -75,7 +102,7 @@
 
   .stable {
     &-active {
-      background: green;
+      background: #11b683;
       color: #fff;
       border-color: #fff;
     }
@@ -89,7 +116,7 @@
   }
   .critique {
     &-active {
-      background: red;
+      background: #e23b42;
       color: #fff;
       border-color: #fff;
     }
@@ -146,5 +173,8 @@
     padding: 0;
     cursor: pointer;
     color: #767f8e;
+  }
+  .sms {
+    text-align: center;
   }
 }
