@@ -1,20 +1,66 @@
 //
 
 .dashboard {
+  header {
+    text-align: center;
+    margin: 50px 0 32px 0;
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    button {
+      margin: 32px 0 8px 0;
+      border-radius: 32px;
+      background: #fff;
+      color: #000;
+      padding: 16px 32px;
+    }
+  }
   .columns {
+    margin-top: 32px;
     .single-column {
       border: 1px solid #ccc;
       border-radius: 4px;
+
+      .patients {
+        max-height: 480px;
+        overflow: auto;
+      }
+
+      &.non-traité {
+        border-top: 5px solid #ffc107;
+      }
+      &.en-cours-de-traitment {
+        border-top: 5px solid #03a9f4;
+      }
+      &.traité {
+        border-top: 5px solid #673ab7;
+      }
+    }
+
+    .column-title {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
     }
   }
 
   .single-patient {
     border: 1px solid #ccc;
+    background: #fff;
     border-radius: 4px;
+    margin: 16px;
+    padding: 16px;
   }
 }
 
 .claim-dialog {
+  button {
+    border-radius: 24px;
+  }
+
   &-form,
   &-questions {
     padding: 32px;
@@ -45,9 +91,6 @@
     }
   }
 
-  &-user-info {
-    border-bottom: 1px solid #ccc;
-  }
   &-message {
     padding: 16px;
     margin: 16px 0;
@@ -59,7 +102,7 @@
 
   .stable {
     &-active {
-      background: green;
+      background: #11b683;
       color: #fff;
       border-color: #fff;
     }
@@ -73,7 +116,7 @@
   }
   .critique {
     &-active {
-      background: red;
+      background: #e23b42;
       color: #fff;
       border-color: #fff;
     }
@@ -104,5 +147,34 @@
     display: flex;
     justify-content: space-around;
     margin: 32px 0;
+  }
+
+  .Ellipse {
+    font-size: 70px;
+    border: none;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-left: -0.6em;
+    margin-top: -0.5em;
+    padding: 0;
+    cursor: pointer;
+    color: #767f8e;
+  }
+  .send {
+    font-size: 70px;
+    border: none;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    color: #767f8e;
+  }
+  .sms {
+    text-align: center;
   }
 }

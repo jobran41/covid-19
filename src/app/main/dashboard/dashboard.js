@@ -1,51 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Container, Grid } from "@material-ui/core";
+import { get } from "lodash";
+
+import { getPatient, getAllPatients, patchPatient } from "app/libs/apis";
 
 import ClaimDialog from "./components/claim-dialog";
 
 import "./dashboard.scss";
-
-const helper = [
-  {
-    id: 5,
-    guid: "PAT-2147483647",
-    first_name: "test",
-    last_name: "test",
-    cin: "test",
-    address: "string",
-    zip_code: "2222",
-    phone_number: 22222222,
-    status: "ON_HOLD"
-  },
-  {
-    id: 6,
-    guid: "PAT-2147483647",
-    first_name: "test",
-    last_name: "test",
-    cin: "test1",
-    address: "string",
-    zip_code: "2222",
-    phone_number: 22222222,
-    status: "IN_PROGRESS"
-  },
-  {
-    id: 7,
-    guid: "PAT-2147483647",
-    first_name: "test",
-    last_name: "test",
-    cin: "tests",
-    address: "string",
-    zip_code: "2222",
-    phone_number: 22222222,
-    status: "ON_HOLD"
-  }
-];
 
 const listOfStatus = ["non-traité", "en cours de traitment", "traité"];
 
 const Dashboard = () => {
   const [visible, setVisible] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [patient, setPatient] = useState({});
+  const [allPatients, setAllPatients] = useState();
+
+  useEffect(() => {
+    getAllPatients().then(res => {
+      setAllPatients(get(res, "data.payload.patients", {}));
+    });
+  }, []);
 
   const filterPatients = status => {
     let currentStatus = "ON_HOLD";
@@ -63,7 +38,8 @@ const Dashboard = () => {
       default:
         break;
     }
-    return helper.filter(({ status }) => status === currentStatus);
+
+    return allPatients ? allPatients[currentStatus].patients : [];
   };
 
   const renderPatients = status => {
@@ -81,7 +57,7 @@ const Dashboard = () => {
     return listOfStatus.map(elem => (
       <Grid item md={4} xs={12}>
         <div className={`single-column ${elem.replace(/ /g, "-")}`}>
-          <div>
+          <div className="column-title">
             {elem} <span>({filterPatients(elem).length})</span>
           </div>
           <div className="patients">{renderPatients(elem)}</div>
@@ -97,7 +73,22 @@ const Dashboard = () => {
           <h2>Bienvenu au Dashboard des docteurs!</h2>
           <p>Cliquez au-dessous pour commoncer a traiter les reclamations</p>
 
-          <Button variant="outlined" onClick={() => setVisible(true)}>
+          <Button
+            variant="outlined"
+            disabled={
+              allPatients && allPatients["ON_HOLD"].patients.length === 0
+            }
+            onClick={() => {
+              setVisible(true);
+              getPatient().then(res => {
+                setPatient(get(res, "data.payload.patient.0", {}));
+                patchPatient(
+                  "IN_PROGRESS",
+                  get(res, "data.payload.patient.0.guid")
+                );
+              });
+            }}
+          >
             traiter une reclamation
           </Button>
         </header>
@@ -111,9 +102,24 @@ const Dashboard = () => {
             onClose={() => {
               setVisible(false);
               setIsSent(false);
+              getAllPatients().then(res => {
+                setAllPatients(get(res, "data.payload.patients", {}));
+              });
             }}
-            onSendSMS={() => setIsSent(true)}
-            onClickNext={() => setIsSent(false)}
+            onSendSMS={() => {
+              setIsSent(true);
+              patchPatient("CLOSED", patient.guid);
+              getAllPatients().then(res => {
+                setAllPatients(get(res, "data.payload.patients", {}));
+              });
+            }}
+            onClickNext={() => {
+              setIsSent(false);
+              getPatient().then(res => {
+                setPatient(get(res, "data.payload.patient.0", {}));
+              });
+            }}
+            patient={patient}
           />
         )}
       </Container>
