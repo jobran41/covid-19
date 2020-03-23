@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getPatient = async () => {
   const response = await axios
-    .get("http://api.ensembletn.beecoop.co/api/v1/secured/treat-patient")
+    .get("https://api.ensembletn.beecoop.co/api/v1/secured/treat-patient")
     .catch(err => {
       throw new Error(err);
     });
