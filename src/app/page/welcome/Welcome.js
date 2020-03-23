@@ -39,18 +39,15 @@ const useStyles = makeStyles(theme => ({
 }));
 const Welcome = props => {
   const [question, setquestion] = useState([]);
+  const [lengthFormStatic, setlengthFormStatic] = useState(0)
+  const [lengthFormDynamic, setlengthFormDynamic] = useState(0)
   const [responses, setReponse] = useState({
     firstName: "string",
     lastName: "string",
     address: "string",
     zipCode: 0,
     phoneNumber: 0,
-    responses: [
-      {
-        value: "string",
-        question: "string"
-      }
-    ]
+    responses: []
   });
   const classes = useStyles();
   const cardProps = [
@@ -82,7 +79,7 @@ const Welcome = props => {
       }
     },
     {
-      disabled: true,
+      disabled: false,
       title: "Informer",
       className: "informer",
       text: "jkfldfbngjeopdfjr rtgdgrdg retgtrgrtd gtrdgrtd eofrleofrgjnl",
@@ -100,14 +97,22 @@ const Welcome = props => {
       .then(res => {
         if (res && res.data && res.data.payload && res.data.payload.questions) {
           let cleanData = [];
+          let currentSome=0
           for (let key in res.data.payload.questions) {
+            currentSome=currentSome+res.data.payload.questions[key].length
             cleanData.push({
               section: key,
               key: key,
               questions: res.data.payload.questions[key]
             });
           }
+/*           const someOfArray=cleanData.reduce((curr,prev)=>{
+            console.log('curr', JSON.stringify(curr))
+            return curr.length+prev
+          },0) */
+console.log('currentSome', currentSome)
           setquestion(cleanData);
+          setlengthFormStatic(currentSome)
         } else {
           setquestion([]);
         }
@@ -116,11 +121,32 @@ const Welcome = props => {
   }, []);
 
   const updateResponse = data => {
-    const newResponse=responses
-    newResponse[data.field].push({alue: data.value,
-    question: data.extraData.id})
-    console.log('newResponse', newResponse)
-    setReponse(newResponse)
+    console.log('lengthFormStatic', lengthFormStatic)
+    const newResponse = responses;
+    const findIt = newResponse[data.field].findIndex(
+      d => d.question === data.extraData.id
+    );
+    if (findIt !== -1) {
+      newResponse[data.field].splice(findIt, 1, {
+        value: data.value,
+        question: data.extraData.id
+      });
+    }else{
+      newResponse[data.field].push({
+        value: data.value,
+        question: data.extraData.id
+      });
+      setlengthFormDynamic(lengthFormDynamic+1)
+    }
+    console.log("newResponse", newResponse);
+    setReponse(newResponse);
+  };
+  const submitForm = data => {
+    console.log("data submitForm", data);
+    const newData={...responses,...data}
+    console.log('newData', newData)
+    axios.post('http://api.ensembletn.beecoop.co/api/v1/patient',{...newData})
+    .then(res=>history.push("/envoiyer/maladie"))
   };
   return (
     <div className="welcome-page">
@@ -179,11 +205,14 @@ const Welcome = props => {
             </Grid>
           </Grid>
         </Grid>
-        <PatientFormModal
+        {lengthFormStatic!==0 &&<PatientFormModal
           updateResponse={updateResponse}
           dataModal={question ? question : []}
           modalAction={props.ModalAction}
-        />
+          submitFormCallback={submitForm}
+          staticCount={lengthFormStatic}
+          dynamicCount={lengthFormDynamic}
+        />}
         <InformModal modalAction={props.ModalAction} />
       </div>
     </div>

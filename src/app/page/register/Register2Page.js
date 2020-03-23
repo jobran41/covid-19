@@ -66,7 +66,7 @@ const Login = props => {
           <img className="logo" src={logo} alt="logo" />
         </div>
         <div className="go-home">
-          <button className="homepage">Retour à la page d'accueil</button>
+          <button onClick={()=>props.history.push("/welcome")} className="homepage">Retour à la page d'accueil</button>
         </div>
       </div>
       <div className="login-text">
