@@ -97,7 +97,6 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
             email: "",
             nom: "",
             prenom: "",
-            cin: "",
             adresse: "",
             tel: ""
           }}
@@ -116,15 +115,27 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
             if (values.prenom === "") {
               errors.prenom = "Required";
             }
-            if (values.cin === "") {
+   /*          if (values.cin === "") {
               errors.cin = "Required";
-            }
+            } */
             if (values.adresse === "") {
               errors.adresse = "Required";
             }
+
+            if (values.adresse  && values.adresse.length < 5) {
+              errors.adresse = "Required";
+            }
+
             if (values.tel === "") {
               errors.tel = "Required";
             }
+
+            if (values.tel && values.tel.length >= 8 ||
+              !/^[0-9]*$/i.test(values.tel)
+            ) {
+              errors.tel = "Invalid phone number";
+            }
+
             if (values.zipCode && values.zipCode.length === 4) {
               errors.zipCode = "zip code must be 4 number";
             }
@@ -185,11 +196,21 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                     margin: 10
                   }}
                 >
-                  <Field
+                 {/*  <Field
                     component={TextField}
                     type="text"
                     label="Cin"
                     name="cin"
+                    variant="outlined"
+                    style={{
+                      margin: "0 12px"
+                    }}
+                  /> */}
+                  <Field
+                    component={TextField}
+                    type="number"
+                    label="Numerode telephone"
+                    name="tel"
                     variant="outlined"
                     style={{
                       margin: "0 12px"
@@ -232,7 +253,7 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                     }}
                   />
                 </div>
-                <div
+ {/*                <div
                   style={{
                     margin: 10
                   }}
@@ -247,7 +268,7 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                       margin: "0 12px"
                     }}
                   />
-                </div>
+                </div> */}
                 <div className="action-buttons">
                   <Button
                     className="cancel"
@@ -270,7 +291,7 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                       if (staticCount === dynamicCount) {
                         submitForm();
                       } else {
-                        alert("there is some question you forget it");
+                        alert("Merci de répondre à toutes les questions");
                       }
                     }}
                   >

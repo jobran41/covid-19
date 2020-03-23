@@ -168,7 +168,7 @@ const InformModal = ({ modalAction, submitForm, history }) => {
                     margin: 10
                   }}
                 >
-                  <div className="p-5">
+{/*                   <div className="p-5">
                     <div> CIN</div>
 
                     <Field
@@ -177,7 +177,7 @@ const InformModal = ({ modalAction, submitForm, history }) => {
                       name="cinDenonciateur"
                       variant="outlined"
                     />
-                  </div>
+                  </div> */}
                   <div className="p-5">
                     <div> Adresse</div>
                     <Field
@@ -295,7 +295,8 @@ const InformModal = ({ modalAction, submitForm, history }) => {
                     color="primary"
                     disabled={isSubmitting}
                     onClick={() => {
-                      submitForm();
+                      alert('Cette fonction est en cours de developpement')
+                      // submitForm();
                       handleClose();
                     }}
                   >
