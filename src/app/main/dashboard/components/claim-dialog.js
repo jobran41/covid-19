@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   Grid,
@@ -11,7 +11,8 @@ import {
 } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 
-import { patient } from "../helper";
+import ellipse from "../ellipse.svg";
+import group from "../group.svg";
 
 const predefinedResponses = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -23,11 +24,16 @@ const ClaimDialog = ({
   isSent = false,
   onClose,
   onSendSMS,
-  onClickNext
+  onClickNext,
+  patient
 }) => {
   const [response, setResponse] = useState("");
   const [open, setOpen] = useState(false);
   const [condition, setCondition] = useState(null);
+
+  useEffect(() => {}, []);
+
+  console.log("patient", patient);
 
   const {
     guid,
@@ -131,34 +137,37 @@ const ClaimDialog = ({
   };
 
   const renderCategories = () => {
-    return Object.keys(responses).map((cat, index) => {
-      switch (cat) {
-        case "CATEGORY_GENERAL":
-          return (
-            <div>
-              <h3>{index + 1}.Quéstions génarales</h3>
-              {renderQuestions(cat)}
-            </div>
-          );
-        case "CATEGORY_ANTECEDENT":
-          return (
-            <div>
-              <h3>{index + 1}.Quéstions médicales</h3>
-              {renderQuestions(cat)}
-            </div>
-          );
-        case "CATEGORY_SYMPTOMS":
-          return (
-            <div>
-              <h3>{index + 1}.les symptomes</h3>
-              {renderQuestions(cat)}
-            </div>
-          );
+    return (
+      responses &&
+      Object.keys(responses).map((cat, index) => {
+        switch (cat) {
+          case "CATEGORY_GENERAL":
+            return (
+              <div>
+                <h3>{index + 1}.Quéstions génarales</h3>
+                {renderQuestions(cat)}
+              </div>
+            );
+          case "CATEGORY_ANTECEDENT":
+            return (
+              <div>
+                <h3>{index + 1}.Quéstions médicales</h3>
+                {renderQuestions(cat)}
+              </div>
+            );
+          case "CATEGORY_SYMPTOMS":
+            return (
+              <div>
+                <h3>{index + 1}.les symptomes</h3>
+                {renderQuestions(cat)}
+              </div>
+            );
 
-        default:
-          break;
-      }
-    });
+          default:
+            break;
+        }
+      })
+    );
   };
 
   return (
@@ -191,6 +200,7 @@ const ClaimDialog = ({
                   numéro de téléphone: <span>{phone_number}</span>
                 </p>
               </div>
+              <Divider />
               <div className="claim-dialog-message">
                 <InputLabel id="select-response-label">
                   utilisez une réponse rapide
@@ -199,6 +209,7 @@ const ClaimDialog = ({
                   labelId="select-response-label"
                   id="select-response"
                   className="select-response"
+                  label="utilisez une réponse rapide"
                   open={open}
                   onClose={handleClose}
                   onOpen={handleOpen}
@@ -278,6 +289,10 @@ const ClaimDialog = ({
       {isSent && (
         <div className="issent">
           <div className="issent-content">
+            <img alt="" class="Ellipse" src={ellipse} />
+            <button class="send">
+              <img alt="" src={group} />
+            </button>
             <Send />
             <h2> Merci Beaucoup docteur!</h2>
           </div>
