@@ -16,7 +16,7 @@ class Auth extends Component {
         /**
          * Comment the line if you do not use JWt
          */
-        //this.jwtCheck();
+        this.jwtCheck();
 
         /**
          * Comment the line if you do not use Auth0
@@ -39,8 +39,24 @@ class Auth extends Component {
              */
             jwtService.signInWithToken()
                 .then(user => {
-                    this.props.setUserData(user);
+                    console.log('jwtService.signInWithToken()', user)
 
+                    const userConfig = {
+                        role: user.roles,
+                        data: {
+                            displayName: user.username,
+                            photoURL   : '',
+                            email      : '',
+                            settings   : {},
+                            shortcuts  : []
+                        }
+                    };
+                  
+                    this.props.setUserData(userConfig);
+                    console.log('this.props', this.props)
+                     this.props.dispatch({
+                        type: "LOGIN_SUCCESS"
+                    }); 
                     this.props.showMessage({message: 'Logged in with JWT'});
                 })
                 .catch(error => {
@@ -121,7 +137,8 @@ function mapDispatchToProps(dispatch)
             setUserDataAuth0   : userActions.setUserDataAuth0,
             setUserDataFirebase: userActions.setUserDataFirebase,
             showMessage        : Actions.showMessage,
-            hideMessage        : Actions.hideMessage
+            hideMessage        : Actions.hideMessage,
+            dispatch
         },
         dispatch);
 }

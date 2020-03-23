@@ -1,10 +1,12 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import {withRouter} from 'react-router-dom';
+import history from "@history";
+import { withRouter } from "react-router-dom";
 
 import {
-  Button,
-/*   LinearProgress,
+  Button
+  /*   LinearProgress,
   MenuItem,
   FormControl,
   InputLabel,
@@ -14,8 +16,8 @@ import MuiTextField from "@material-ui/core/TextField";
 import {
   fieldToTextField,
   TextField,
-  TextFieldProps ,
-/*   Select,
+  TextFieldProps
+  /*   Select,
   Switch */
 } from "formik-material-ui";
 /* import {
@@ -25,9 +27,10 @@ import {
 } from "formik-material-ui-pickers"; */
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import {submitLogin} from "../../auth/store/actions/login.actions"
+import { submitLogin } from "../../auth/store/actions/login.actions";
 import { connect } from "react-redux";
-
+import "../../scss/login_page.scss";
+import logo from "../../img/logo.svg";
 function UpperCasingTextField(props) {
   const {
     form: { setFieldValue },
@@ -52,92 +55,124 @@ function UpperCasingTextField(props) {
   );
 }
 
-const Login = (props) => {
-const [email, setEmail] = React.useState('')
-const [password, setPassword] = React.useState('')
+const Login = props => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  console.log("props", props);
   return (
-  <Formik
-    initialValues={{
-      email: "",
-      password: "",
-    }}
-    validate={values => {
-      const errors = {};
+    <div className="login-page">
+      <div className="main-navbar">
+        <div className="logo-container">
+          <img className="logo" src={logo} alt="logo" />
+        </div>
+        <div className="go-home">
+          <button onClick={()=>props.history.push("/welcome")} className="homepage">Retour à la page d'accueil</button>
+        </div>
+      </div>
+      <div className="login-text">
+        <h1>Connectez-vous à votre espace docteur</h1>
+        <h4>
+          Cet espace vous permet de voir les demandes envoyées par les citoyens
+        </h4>
+      </div>
+      <Formik
+        initialValues={{
+          email: "",
+          password: ""
+        }}
+        validate={values => {
+          const errors = {};
 
-      if (!values.email) {
-        errors.email = "Required";
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-      ) {
-        errors.email = "Invalid email address";
-      }
-      if (values.password === "") {
-        errors.password = "Required";
-      }
-      if (values.password.length < 8) {
-        errors.password = "password must be 8 caractere";
-      }
-      return errors;
-    }}
-    onSubmit={(values, { setSubmitting }) => {
-      const {submitLogin}=props
-      console.log('values', values)
-      setSubmitting(false)
-      submitLogin(values).then(res=>{
-        props.history.push('/dashboard')
-      })
-    }}
-    render={({resetForm, submitForm, isSubmitting, values, setFieldValue }) => (
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Form style={{
-            width:"50%",
-            margin:"0 auto"
-        }}>
-          <div
-            style={{
-              margin: 10
-            }}
-          >
-            <Field
-              component={UpperCasingTextField}
-              name="email"
-              type="email"
-              label="Email"
-              value={email}
-              onChange={v=>setEmail(v.target.value.toLowerCase())}
-            />
-            <Field
-              value={password}
-              component={TextField}
-              type="password"
-              label="Password"
-              name="password"
-              variant="outlined"
-              onChange={v=>setPassword(v.target.value)}
-            />
-          </div>
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting}
-              onClick={submitForm}
-            >
-              Valider
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting}
-              onClick={resetForm}
-            >
-              clear
-            </Button>
-          </div>
-        </Form>
-      </MuiPickersUtilsProvider>
-    )}
-  />)
+          if (!values.email) {
+            errors.email = "Required";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+          ) {
+            errors.email = "Invalid email address";
+          }
+          if (values.password === "") {
+            errors.password = "Required";
+          }
+          if (values.password.length < 8) {
+            errors.password = "password must be 8 caractere";
+          }
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          const { submitLogin } = props;
+          console.log("values", values);
+          setSubmitting(false);
+          submitLogin(values).then(res => {
+            props.history.push("/dashboard");
+          });
+        }}
+        render={({
+          resetForm,
+          submitForm,
+          isSubmitting,
+          values,
+          setFieldValue
+        }) => (
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Form className="login-form">
+              <div
+                style={{
+                  margin: 10,
+                  marginBottom: 30
+                }}
+              >
+                <div className="email-container">
+                  <Field
+                    className="email-field"
+                    component={UpperCasingTextField}
+                    name="email"
+                    type="email"
+                    label="Email"
+                    value={email}
+                    onChange={v => setEmail(v.target.value.toLowerCase())}
+                  />
+                </div>
+                <div className="password-container">
+                  <Field
+                    className="password-field"
+                    value={password}
+                    component={TextField}
+                    type="password"
+                    label="Mot de passe"
+                    name="password"
+                    variant="outlined"
+                    onChange={v => setPassword(v.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <Button
+                  className="login-button"
+                  variant="contained"
+                  color="primary"
+                  disabled={isSubmitting}
+                  onClick={submitForm}
+                >
+                  Connexion
+                </Button>
+                {/*<Button*/}
+                {/*  variant="contained"*/}
+                {/*  color="primary"*/}
+                {/*  disabled={isSubmitting}*/}
+                {/*  onClick={resetForm}*/}
+                {/*>*/}
+                {/*  clear*/}
+                {/*</Button>*/}
+              </div>
+            </Form>
+          </MuiPickersUtilsProvider>
+        )}
+      />
+    </div>
+  );
 };
-
-export default  connect(null,{submitLogin})(Login);
+const mapStateToProps = state => {
+  console.log("state", state);
+  return { isAuth: state.auth };
+};
+export default connect(mapStateToProps, { submitLogin })(Login);

@@ -12,7 +12,6 @@ export function submitLogin({email, password})
     return (dispatch) =>{
         return jwtService.signInWithEmailAndPassword(email, password)
         .then((user) => {
-console.log('user', user)
             const userConfig = {
                 role: user.roles,
                 data: {

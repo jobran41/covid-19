@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import history from "@history";
 import { GroupedWelcomeCards } from "@fuse";
@@ -38,9 +39,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 const Welcome = props => {
+  const [question, setquestion] = useState([]);
+  const [lengthFormStatic, setlengthFormStatic] = useState(0)
+  const [lengthFormDynamic, setlengthFormDynamic] = useState(0)
+  const [responses, setReponse] = useState({
+    firstName: "string",
+    lastName: "string",
+    address: "string",
+    zipCode: 0,
+    phoneNumber: 0,
+    responses: []
+  });
   const classes = useStyles();
   const cardProps = [
     {
+      disabled: false,
       title: "Médecin",
       className: "medecin",
       text:
@@ -55,6 +68,7 @@ const Welcome = props => {
       }
     },
     {
+      disabled: false,
       title: "Malade",
       className: "malade",
       text:
@@ -67,6 +81,7 @@ const Welcome = props => {
       }
     },
     {
+      disabled: false,
       title: "Informer",
       className: "informer",
       text:
@@ -79,12 +94,63 @@ const Welcome = props => {
       }
     }
   ];
+  useEffect(() => {
+    axios
+      .get("http://api.ensembletn.beecoop.co/api/v1/question")
+      .then(res => {
+        if (res && res.data && res.data.payload && res.data.payload.questions) {
+          let cleanData = [];
+          let currentSome=0
+          for (let key in res.data.payload.questions) {
+            currentSome=currentSome+res.data.payload.questions[key].length
+            cleanData.push({
+              section: key,
+              key: key,
+              questions: res.data.payload.questions[key]
+            });
+          }
+/*           const someOfArray=cleanData.reduce((curr,prev)=>{
+            console.log('curr', JSON.stringify(curr))
+            return curr.length+prev
+          },0) */
+console.log('currentSome', currentSome)
+          setquestion(cleanData);
+          setlengthFormStatic(currentSome)
+        } else {
+          setquestion([]);
+        }
+      })
+      .catch(err => setquestion(err));
+  }, []);
 
-  const submitInformer = values => {
-    console.log("values", values);
-    // props.addInformer(values);
+  const updateResponse = data => {
+    console.log('lengthFormStatic', lengthFormStatic)
+    const newResponse = responses;
+    const findIt = newResponse[data.field].findIndex(
+      d => d.question === data.extraData.id
+    );
+    if (findIt !== -1) {
+      newResponse[data.field].splice(findIt, 1, {
+        value: data.value,
+        question: data.extraData.id
+      });
+    }else{
+      newResponse[data.field].push({
+        value: data.value,
+        question: data.extraData.id
+      });
+      setlengthFormDynamic(lengthFormDynamic+1)
+    }
+    console.log("newResponse", newResponse);
+    setReponse(newResponse);
   };
-
+  const submitForm = data => {
+    console.log("data submitForm", data);
+    const newData={...responses,...data}
+    console.log('newData', newData)
+    axios.post('http://api.ensembletn.beecoop.co/api/v1/patient',{...newData})
+    .then(res=>history.push("/envoiyer/maladie"))
+  };
   return (
     <div className="welcome-page">
       <div className="main-navbar">
@@ -118,8 +184,8 @@ const Welcome = props => {
       </div>
       <h1 className="welcome-title"> Ensemble pour la Tunisie</h1>
       <div className="welcome-subtitle">
-        Une application qui va renforcer la connection entre les citoyens, les
-        docteurs et la gouvernorat <br />
+        Une application qui va renforcer la connexion entre les citoyens, les
+        docteurs et le gouvernorat <br />
         pour combattre le virus Covid-19.
       </div>
       {/*  <GroupedWelcomeCards/> */}
@@ -135,17 +201,22 @@ const Welcome = props => {
                     handleClick={item.handleClick}
                     buttonContent={item.buttonContent}
                     src={item.src}
+                    disabled={item.disabled}
                   ></WelcomeCard>
                 </Grid>
               ))}
             </Grid>
           </Grid>
         </Grid>
-        <PatientFormModal modalAction={props.ModalAction} />
-        <InformModal
+        {lengthFormStatic!==0 &&<PatientFormModal
+          updateResponse={updateResponse}
+          dataModal={question ? question : []}
           modalAction={props.ModalAction}
-          submitForm={submitInformer}
-        />
+          submitFormCallback={submitForm}
+          staticCount={lengthFormStatic}
+          dynamicCount={lengthFormDynamic}
+        />}
+        <InformModal modalAction={props.ModalAction} />
       </div>
     </div>
   );
