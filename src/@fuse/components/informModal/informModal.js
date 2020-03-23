@@ -1,7 +1,7 @@
 import React from "react";
-import history from "history";
 import { Modal } from "@fuse";
 import { Formik, Form, Field } from "formik";
+import { withRouter } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import MuiTextField from "@material-ui/core/TextField";
 import {
@@ -13,7 +13,7 @@ import {
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
-const InformModal = ({ modalAction }) => {
+const InformModal = ({ modalAction, submitForm, history }) => {
   const handleClose = id => {
     modalAction(id);
   };
@@ -44,7 +44,16 @@ const InformModal = ({ modalAction }) => {
 
   return (
     <Modal className="informer" id="Inform" ModalAction={modalAction}>
-      <div>formulaire de dénonciation</div>
+      <div>
+        <div>formulaire de dénonciation</div>
+        <Button
+          onClick={() => {
+            handleClose("Inform");
+          }}
+        >
+          x
+        </Button>
+      </div>
       <Formik
         initialValues={{
           emailDenonciateur: "",
@@ -111,20 +120,20 @@ const InformModal = ({ modalAction }) => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
+          console.log("values", values);
           setTimeout(() => {
             setSubmitting(false);
             alert(JSON.stringify(values, null, 2));
           }, 500);
         }}
-        render={({
-          resetForm,
-          submitForm,
-          isSubmitting,
-          values,
-          setFieldValue
-        }) => (
+      >
+        {props => (
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Form>
+            <Form
+              onSubmit={() => {
+                submitForm(props.values);
+              }}
+            >
               <h2>1.Données du dénonciateur</h2>
               <div
                 style={{
@@ -241,10 +250,10 @@ const InformModal = ({ modalAction }) => {
                 <Button
                   variant="contained"
                   color="primary"
-                  disabled={isSubmitting}
+                  type="submit"
+                  disabled={props.isSubmitting}
                   onClick={() => {
-                    submitForm();
-                    handleClose();
+                    history.push("/envoiyer/jo");
                   }}
                 >
                   Valider
@@ -252,9 +261,9 @@ const InformModal = ({ modalAction }) => {
                 <Button
                   variant="contained"
                   color="primary"
-                  disabled={isSubmitting}
+                  disabled={props.isSubmitting}
                   onClick={() => {
-                    resetForm();
+                    props.resetForm();
                     handleClose("Inform");
                   }}
                 >
@@ -264,9 +273,9 @@ const InformModal = ({ modalAction }) => {
             </Form>
           </MuiPickersUtilsProvider>
         )}
-      />
+      </Formik>
     </Modal>
   );
 };
 
-export default InformModal;
+export default withRouter(InformModal);

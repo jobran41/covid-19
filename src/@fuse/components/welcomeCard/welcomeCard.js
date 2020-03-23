@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
   text: {
     textAlign: "center",
-    height: 100
+    height: 130
   },
   title: {
     paddingTop: "2rem",
@@ -47,7 +47,6 @@ export default function WelcomeCard({
   src
 }) {
   const classes = useStyles();
-  console.log("src", src);
 
   return (
     <Card className={classes.root}>
