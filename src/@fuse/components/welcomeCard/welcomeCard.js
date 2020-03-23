@@ -42,6 +42,7 @@ export default function WelcomeCard({
   title,
   text,
   icon,
+  disabled,
   handleClick,
   buttonContent,
   src
@@ -87,6 +88,7 @@ export default function WelcomeCard({
           color="primary"
           onClick={handleClick}
           className={classes.button}
+          disabled={disabled}
         >
           {buttonContent}
         </Button>

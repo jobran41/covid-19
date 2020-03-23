@@ -19,19 +19,21 @@ const QuestionEducation = props => {
   };
 
   return (
-    <div>
-      <h4>{props.title}</h4>
-      <p>{props.description}</p>
+    <div className="question-item">
+      <h5>{props.title}</h5>
+      <p className="arabic-question">{props.description}</p>
       <div>
         <Button
           className=""
           variant={`${stateOui ? "contained" : "outline"}`}
           style={{
-            border: "1px solid green",
+            border: "1px solid #11B683",
             borderRadius: 20,
             margin: 10,
-            backgroundColor: stateOui ? "green" : "white",
-            color: stateOui ? "white" : "green"
+            backgroundColor: stateOui ? "#11B683" : "white",
+            color: stateOui ? "white" : "#11B683",
+            boxShadow: stateOui ? "none" : "none",
+            padding: "8px 28px"
           }}
           color="primary"
           onClick={handleClickOui}
@@ -43,11 +45,13 @@ const QuestionEducation = props => {
           variant={`${stateNon ? "contained" : "outline"}`}
           color="primary"
           style={{
-            border: "1px solid red",
+            border: "1px solid #E23B42",
             borderRadius: 20,
             margin: 10,
-            backgroundColor: stateNon ? "red" : "white",
-            color: stateNon ? "white" : "red"
+            backgroundColor: stateNon ? "#E23B42" : "white",
+            color: stateNon ? "white" : "#E23B42",
+            boxShadow: stateNon ? "none" : "none",
+            padding: "8px 28px"
           }}
           onClick={handleClickNon}
         >
