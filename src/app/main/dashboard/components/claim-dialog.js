@@ -104,7 +104,7 @@ const ClaimDialog = ({
           return "oui";
 
         default:
-          return "neutre";
+          break;
       }
     } else {
       switch (value) {
@@ -115,7 +115,7 @@ const ClaimDialog = ({
           return "oui";
 
         default:
-          return "N/A";
+          break;
       }
     }
   };
