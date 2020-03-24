@@ -1,43 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cea0b2942d034365fd22a75365c29286",
+    "revision": "aeb1e945f711866ba833d99079bf23ab",
     "url": "/index.html"
   },
   {
-    "revision": "38d98de2380d4b6ca55c",
+    "revision": "cbf9d20d761e6f53bceb",
     "url": "/static/css/2.e9bf8319.chunk.css"
   },
   {
-    "revision": "5ac23c3889708496ccc5",
-    "url": "/static/css/3.f394944b.chunk.css"
+    "revision": "f2067b7aa4281c3e545e",
+    "url": "/static/css/3.fb888df0.chunk.css"
   },
   {
-    "revision": "b273d8ca5e743a6b47d7",
+    "revision": "ed4df7526cca910d57c0",
     "url": "/static/css/4.3bf28bac.chunk.css"
   },
   {
-    "revision": "4b60bcb4ecdb1f246713",
-    "url": "/static/css/main.1c8d4db8.chunk.css"
+    "revision": "6c274d42543af164ddc5",
+    "url": "/static/css/main.67758699.chunk.css"
   },
   {
-    "revision": "38d98de2380d4b6ca55c",
-    "url": "/static/js/2.9b751e87.chunk.js"
+    "revision": "cbf9d20d761e6f53bceb",
+    "url": "/static/js/2.20e4fbda.chunk.js"
   },
   {
-    "revision": "5ac23c3889708496ccc5",
-    "url": "/static/js/3.ce17585d.chunk.js"
+    "revision": "f2067b7aa4281c3e545e",
+    "url": "/static/js/3.2e66cb83.chunk.js"
   },
   {
-    "revision": "b273d8ca5e743a6b47d7",
-    "url": "/static/js/4.5e575419.chunk.js"
+    "revision": "ed4df7526cca910d57c0",
+    "url": "/static/js/4.e1bc06bb.chunk.js"
   },
   {
-    "revision": "4b60bcb4ecdb1f246713",
-    "url": "/static/js/main.c473fe35.chunk.js"
+    "revision": "6c274d42543af164ddc5",
+    "url": "/static/js/main.adc419d0.chunk.js"
   },
   {
-    "revision": "766fa8ff657a45967cca",
-    "url": "/static/js/runtime~main.47f75ee7.js"
+    "revision": "524a71cb3a6df047e959",
+    "url": "/static/js/runtime~main.54febac1.js"
   },
   {
     "revision": "558e2845e957b1b52fbb242f264c7a2e",
@@ -66,6 +66,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "9ea38496ccc6bcebcd6bb6462ed23642",
     "url": "/static/media/logo.9ea38496.png"
+  },
+  {
+    "revision": "76db49a565c50b0d762cf4785e03fa32",
+    "url": "/static/media/ministere.76db49a5.png"
   },
   {
     "revision": "1dfc66c75d0bc90cfbffb5076a7c6f90",
@@ -178,6 +182,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "f99056b607ef79e25593f04506f5f744",
     "url": "/static/media/muli-latin-900italic.f99056b6.woff2"
+  },
+  {
+    "revision": "e1a6256de8045c167b89b133f58d194b",
+    "url": "/static/media/tunisieTelecom.e1a6256d.png"
   },
   {
     "revision": "848d62c620f4f3aa82629ebca61a1dae",
