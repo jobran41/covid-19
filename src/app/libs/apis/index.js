@@ -25,7 +25,7 @@ export const patchPatient = async (status, guid) => {
   if(guid){
     const response = await axios
     .patch(`https://api.ensembletn.beecoop.co/api/v1/secured/patient/${guid}`, {
-      status: status
+      flag: status
     })
     .catch(err => {
       alert(err)

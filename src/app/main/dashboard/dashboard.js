@@ -83,10 +83,10 @@ const Dashboard = () => {
               getPatient().then(res => {
                 console.log('res ', res)
                 setPatient(get(res, "data.payload.patient", {}));
-                patchPatient(
+                 /* patchPatient(
                   "IN_PROGRESS",
                   get(res, "data.payload.patient.guid")
-                );
+                );  */
               });
             }}
           >
@@ -108,8 +108,9 @@ const Dashboard = () => {
               });
             }}
             onSendSMS={() => {
+              //add dynamic status flag
               setIsSent(true);
-              patchPatient("CLOSED", patient.guid);
+              patchPatient("URGENT", patient.guid);
               getAllPatients().then(res => {
                 setAllPatients(get(res, "data.payload.patients", {}));
               });
