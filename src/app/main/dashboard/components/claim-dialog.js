@@ -79,7 +79,7 @@ const ClaimDialog = ({
         return "stable-active";
 
       default:
-        return "urgent-active";
+        break;
     }
   };
 
