@@ -81,10 +81,11 @@ const Dashboard = () => {
             onClick={() => {
               setVisible(true);
               getPatient().then(res => {
-                setPatient(get(res, "data.payload.patient.0", {}));
+                console.log('res ', res)
+                setPatient(get(res, "data.payload.patient", {}));
                 patchPatient(
                   "IN_PROGRESS",
-                  get(res, "data.payload.patient.0.guid")
+                  get(res, "data.payload.patient.guid")
                 );
               });
             }}
