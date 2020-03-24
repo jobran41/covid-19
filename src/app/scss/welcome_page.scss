@@ -1,7 +1,7 @@
 /*imports*/
 @import "variables";
 /*import arabic Google Font*/
-@import url('https://fonts.googleapis.com/css?family=Tajawal&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Tajawal&display=swap");
 
 /*Style*/
 .welcome-page {
@@ -44,17 +44,71 @@
       }
     }
   }
+
   .welcome-title {
     text-align: center;
-    color: $gray_font;
+    color: white;
+    background-color: red;
+    width: 62%;
+    left: 19%;
+    right: 15%;
+    position: relative;
+    justify-content: center;
     font-size: 30px;
     margin-bottom: 15px;
+  }
+  .welcome-title :nth-child(1) {
+    text-align: center;
+    font: Bold 49px/48px Tajawal;
+    letter-spacing: 0;
+    color: #ffffff;
+    opacity: 1;
+    padding-top: 10px;
+  }
+  .welcome-title :nth-child(2) {
+    text-align: center;
+    font: Bold 24px/23px Tajawal;
+    letter-spacing: 2.4px;
+    color: #ffffff;
+    opacity: 1;
+    padding: 10px 0;
   }
   .welcome-subtitle {
     text-align: center;
     color: $gray_font;
     font-size: 16px;
   }
+  .partenariat {
+    text-align: center;
+    font: Bold 12px/21px Manrope;
+    letter-spacing: 1.2px;
+    color: #acacac;
+    text-transform: uppercase;
+    opacity: 1;
+    margin-top: 30px;
+  }
+  .logos {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .associaMed {
+    width: 56px;
+    height: 56px;
+    margin: 20px;
+  }
+  .ministere {
+    width: 147px;
+    height: 56px;
+    margin: 20px;
+  }
+  .tunisieTelecom {
+    width: 100px;
+    height: 66px;
+    margin: 20px;
+  }
+
   /*Cards*/
   .card-wrapper {
     .MuiGrid-container {
@@ -64,70 +118,70 @@
           .MuiCardContent-root {
             padding-top: 25px;
             span.MuiSkeleton-circle {
-              background-color: #D1E8FF;
+              background-color: #11b69a45;
             }
             p {
               font-family: "Manrope", sans-serif;
               font-size: 14px;
               line-height: 23px;
-              letter-spacing: .245px;
+              letter-spacing: 0.245px;
             }
           }
           .MuiCardActions-root {
             button {
               display: block;
               width: 100%;
-              border: 1px solid #367EE0;
+              border: 1px solid #11b69a;
               padding: 12px 15px;
               border-radius: 50px;
               margin: 10px;
-              color: #367EE0;
+              color: #11b69a;
               &:hover {
-                background-color: #367EE0;
+                background-color: #11b69a;
                 color: #fff;
               }
             }
           }
         }
       }
-      &>.MuiGrid-item:nth-child(2) {
+      & > .MuiGrid-item:nth-child(2) {
         .MuiPaper-root {
           span.MuiSkeleton-circle {
-            background-color: #FFD1D3;
+            background-color: #e2833b3b;
           }
           .MuiCardActions-root {
             button {
               display: block;
               width: 100%;
-              border: 1px solid #E23B42;
+              border: 1px solid #e2833b;
               padding: 12px 15px;
               border-radius: 50px;
               margin: 10px;
-              color: #E23B42;
+              color: #e2833b;
               &:hover {
-                background-color: #E23B42;
+                background-color: #e2833b;
                 color: #fff;
               }
             }
           }
         }
       }
-      &>.MuiGrid-item:nth-child(3) {
+      & > .MuiGrid-item:nth-child(3) {
         .MuiPaper-root {
           span.MuiSkeleton-circle {
-            background-color: #A6ECD7;
+            background-color: #d1e8ff;
           }
           .MuiCardActions-root {
             button {
               display: block;
               width: 100%;
-              border: 1px solid #11B683;
+              border: 1px solid #367ee0;
               padding: 12px 15px;
               border-radius: 50px;
               margin: 10px;
-              color: #11B683;
+              color: #367ee0;
               &:hover {
-                background-color: #11B683;
+                background-color: #367ee0;
                 color: #fff;
               }
             }
@@ -138,32 +192,33 @@
   }
 }
 /*PATIENT POPUP*/
-.patientForm, .informer {
+.patientForm,
+.informer {
   .MuiBackdrop-root {
     background-color: rgba(0, 0, 0, 0.27);
   }
   .MuiDialog-container {
     .MuiPaper-root {
-      -webkit-box-shadow: 0 0 35px 1px rgba(0,0,0,0.1);
-      -moz-box-shadow: 0 0 35px 1px rgba(0,0,0,0.1);
-      box-shadow: 0 0 35px 1px rgba(0,0,0,0.1);
+      -webkit-box-shadow: 0 0 35px 1px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0 0 35px 1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 35px 1px rgba(0, 0, 0, 0.1);
       .modal-header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         padding: 20px;
-        border-bottom: 1px solid #CECECE;
+        border-bottom: 1px solid #cecece;
         h4 {
-          color: #93A2A8;
+          color: #93a2a8;
           font-size: 14px;
           align-self: center;
           text-transform: uppercase;
         }
         button {
-          color: #93A2A8;
+          color: #93a2a8;
           font-size: 16px;
           line-height: 19px;
-          border: 1px solid #CECECE;
+          border: 1px solid #cecece;
           border-radius: 50px;
           height: 35px;
           width: 35px;
@@ -197,8 +252,8 @@
           }
           .question-item {
             margin: 10px 0;
-            border-bottom: 1px solid rgba(206, 206, 206, 0.20);
-          h5 {
+            border-bottom: 1px solid rgba(206, 206, 206, 0.2);
+            h5 {
               font-family: "Manrope", sans-serif;
               font-size: 16px;
               color: #596377;
@@ -206,7 +261,7 @@
               margin-bottom: 6px;
             }
             .arabic-question {
-              font-family: 'Tajawal', sans-serif;
+              font-family: "Tajawal", sans-serif;
               font-size: 18px;
               text-align: right;
               margin-bottom: 6px;
@@ -214,6 +269,7 @@
             }
           }
         }
+
         .action-buttons {
           text-align: center;
           button {
@@ -222,14 +278,12 @@
             margin: 12px;
           }
           .cancel {
-
           }
           .submit {
-            background-color: #11B683;
+            background-color: #11b683;
             box-shadow: none;
           }
         }
-
       }
     }
   }

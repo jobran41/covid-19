@@ -65,7 +65,7 @@ const PatientFormModal = ({
   const getAllState = data => {
     updateResponse(data);
   };
-console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
+  console.log("dynamicCount,  staticCount,", dynamicCount, staticCount);
   return (
     <Modal className="patientForm" id="PatientForm" ModalAction={modalAction}>
       <div className="modal-header">
@@ -102,27 +102,27 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
           }}
           validate={values => {
             const errors = {};
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-            ) {
-              errors.email = "Invalid email address";
-            }
+            // if (!values.email) {
+            //   errors.email = "Required";
+            // } else if (
+            //   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+            // ) {
+            //   errors.email = "Invalid email address";
+            // }
             if (values.nom === "") {
               errors.nom = "Required";
             }
             if (values.prenom === "") {
               errors.prenom = "Required";
             }
-   /*          if (values.cin === "") {
+            /*          if (values.cin === "") {
               errors.cin = "Required";
             } */
             if (values.adresse === "") {
               errors.adresse = "Required";
             }
 
-            if (values.adresse  && values.adresse.length < 5) {
+            if (values.adresse && values.adresse.length < 5) {
               errors.adresse = "Required";
             }
 
@@ -130,7 +130,8 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
               errors.tel = "Required";
             }
 
-            if (values.tel && values.tel.length >= 8 ||
+            if (
+              (values.tel && values.tel.length >= 8) ||
               !/^[0-9]*$/i.test(values.tel)
             ) {
               errors.tel = "Invalid phone number";
@@ -196,26 +197,6 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                     margin: 10
                   }}
                 >
-                 {/*  <Field
-                    component={TextField}
-                    type="text"
-                    label="Cin"
-                    name="cin"
-                    variant="outlined"
-                    style={{
-                      margin: "0 12px"
-                    }}
-                  /> */}
-                  <Field
-                    component={TextField}
-                    type="number"
-                    label="Numerode telephone"
-                    name="tel"
-                    variant="outlined"
-                    style={{
-                      margin: "0 12px"
-                    }}
-                  />
                   <Field
                     component={TextField}
                     type="text"
@@ -228,12 +209,33 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                   />
                 </div>
 
+                {/*  <Field
+                    component={TextField}
+                    type="text"
+                    label="Cin"
+                    name="cin"
+                    variant="outlined"
+                    style={{
+                      margin: "0 12px"
+                    }}
+                  /> */}
                 <div
                   style={{
                     margin: 10
                   }}
                 >
                   <Field
+                    component={TextField}
+                    type="number"
+                    label="Numero de telephone"
+                    name="tel"
+                    variant="outlined"
+                    style={{
+                      margin: "0 12px"
+                    }}
+                  />
+
+                  {/* <Field
                     component={UpperCasingTextField}
                     name="email"
                     type="email"
@@ -241,7 +243,7 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                     style={{
                       margin: "0 12px"
                     }}
-                  />
+                  /> */}
                   <Field
                     component={TextField}
                     type="number"
@@ -253,7 +255,7 @@ console.log('dynamicCount,  staticCount,', dynamicCount,  staticCount)
                     }}
                   />
                 </div>
- {/*                <div
+                {/*                <div
                   style={{
                     margin: 10
                   }}

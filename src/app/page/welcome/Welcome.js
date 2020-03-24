@@ -13,12 +13,18 @@ import "../../scss/welcome_page.scss";
 import navbar from "../../store/reducers/fuse/navbar.reducer";
 // import logo from "../../img/logo.svg";
 import logo from "../../img/logo.png";
+import associaMed from "../../img/associaMed.png";
+import ministere from "../../img/ministere.png";
+import tunisieTelecom from "../../img/tunisieTelecom.png";
+
 import facebook from "../../img/social/facebook-icon.svg";
 import instagram from "../../img/social/instagram-icon.svg";
 import twitter from "../../img/social/twitter-icon.svg";
+
 const styles = theme => ({
   layoutRoot: {
-    paddingTop: "5rem",
+    height: "100vh",
+    // paddingTop: "5rem",
     textAlign: "center"
   },
   title: {
@@ -40,8 +46,8 @@ const useStyles = makeStyles(theme => ({
 }));
 const Welcome = props => {
   const [question, setquestion] = useState([]);
-  const [lengthFormStatic, setlengthFormStatic] = useState(0)
-  const [lengthFormDynamic, setlengthFormDynamic] = useState(0)
+  const [lengthFormStatic, setlengthFormStatic] = useState(0);
+  const [lengthFormDynamic, setlengthFormDynamic] = useState(0);
   const [responses, setReponse] = useState({
     firstName: "string",
     lastName: "string",
@@ -72,7 +78,7 @@ const Welcome = props => {
       title: "Malade",
       className: "malade",
       text:
-        "Vous ressentez les symptômes du COVID-19 mais vous n'arrivez pas à évaluer votre cas? Remplissez ce formulaire et notre équipe pourra traiter votre dossier dans les plus brefs délais.",
+        "Vous ressentez les symptômes du COVID-19 mais vous n'arrivez pas à évaluer votre cas? Notre équipe des médecins pourra traiter votre dossier dans les plus brefs délais.",
       redirect: "/malade",
       buttonContent: "Contactez un médecin",
       src: "assets/images/welcome/sick.png",
@@ -85,7 +91,7 @@ const Welcome = props => {
       title: "Informer",
       className: "informer",
       text:
-        "Vous connaissez quelqu'un qui ne respecte pas les règles du confinement? Vous connaissez quelqu'un qui met en danger des citoyens tunisiens? Protégez-vous et protégez votre entourage en remplissant ce formulaire de dénonciation.",
+        "Vous connaissez quelqu'un qui ne respecte pas les règles du confinement? Protégez-vous et protégez votre entourage en remplissant ce formulaire.",
       redirect: "/informer",
       buttonContent: "choisissez d'informer",
       src: "assets/images/welcome/inform.png",
@@ -100,22 +106,22 @@ const Welcome = props => {
       .then(res => {
         if (res && res.data && res.data.payload && res.data.payload.questions) {
           let cleanData = [];
-          let currentSome=0
+          let currentSome = 0;
           for (let key in res.data.payload.questions) {
-            currentSome=currentSome+res.data.payload.questions[key].length
+            currentSome = currentSome + res.data.payload.questions[key].length;
             cleanData.push({
               section: key,
               key: key,
               questions: res.data.payload.questions[key]
             });
           }
-/*           const someOfArray=cleanData.reduce((curr,prev)=>{
+          /*           const someOfArray=cleanData.reduce((curr,prev)=>{
             console.log('curr', JSON.stringify(curr))
             return curr.length+prev
           },0) */
-console.log('currentSome', currentSome)
+          console.log("currentSome", currentSome);
           setquestion(cleanData);
-          setlengthFormStatic(currentSome)
+          setlengthFormStatic(currentSome);
         } else {
           setquestion([]);
         }
@@ -124,7 +130,7 @@ console.log('currentSome', currentSome)
   }, []);
 
   const updateResponse = data => {
-    console.log('lengthFormStatic', lengthFormStatic)
+    console.log("lengthFormStatic", lengthFormStatic);
     const newResponse = responses;
     const findIt = newResponse[data.field].findIndex(
       d => d.question === data.extraData.id
@@ -134,12 +140,12 @@ console.log('currentSome', currentSome)
         value: data.value,
         question: data.extraData.id
       });
-    }else{
+    } else {
       newResponse[data.field].push({
         value: data.value,
         question: data.extraData.id
       });
-      setlengthFormDynamic(lengthFormDynamic+1)
+      setlengthFormDynamic(lengthFormDynamic + 1);
     }
     console.log("newResponse", newResponse);
     setReponse(newResponse);
@@ -155,7 +161,7 @@ console.log('currentSome', currentSome)
     <div className="welcome-page">
       <div className="main-navbar">
         <div className="logo-container">
-          <img className="logo" src={logo} alt="logo" />
+          {/* <img className="logo" src={logo} alt="logo" /> */}
         </div>
         <div className="social-container">
           <ul className="social-list">
@@ -182,11 +188,15 @@ console.log('currentSome', currentSome)
         {/*    </button>*/}
         {/*</div>*/}
       </div>
-      <h1 className="welcome-title"> Ensemble pour la Tunisie</h1>
+      <div className="welcome-title">
+        <h1>مع بعضنا</h1>
+        <h1> Ensemble</h1>
+      </div>
       <div className="welcome-subtitle">
-        Une application qui va renforcer la connexion entre les citoyens, les
-        docteurs et le gouvernorat <br />
-        pour combattre le virus Covid-19.
+        Mabaadhna est une plateforme permettant la mise en relation rapide des
+        porteurs des <br />
+        symptômes du Covid-19 avec le corps médical et l'accélération de leur
+        prise en charge
       </div>
       {/*  <GroupedWelcomeCards/> */}
       <div className="card-wrapper">
@@ -208,14 +218,34 @@ console.log('currentSome', currentSome)
             </Grid>
           </Grid>
         </Grid>
-        {lengthFormStatic!==0 &&<PatientFormModal
-          updateResponse={updateResponse}
-          dataModal={question ? question : []}
-          modalAction={props.ModalAction}
-          submitFormCallback={submitForm}
-          staticCount={lengthFormStatic}
-          dynamicCount={lengthFormDynamic}
-        />}
+        {/* <div className=""> */}
+        <div className="partenariat">Agréée par | En partenariat avec</div>
+        <ul className="logos">
+          <li>
+            <img className="associaMed" src={associaMed} alt="facebook" />
+          </li>
+          <li>
+            <img className="ministere" src={ministere} alt="instagram" />
+          </li>
+          <li>
+            <img
+              className="tunisieTelecom"
+              src={tunisieTelecom}
+              alt="twitter"
+            />
+          </li>
+        </ul>
+        {/* </div> */}
+        {lengthFormStatic !== 0 && (
+          <PatientFormModal
+            updateResponse={updateResponse}
+            dataModal={question ? question : []}
+            modalAction={props.ModalAction}
+            submitFormCallback={submitForm}
+            staticCount={lengthFormStatic}
+            dynamicCount={lengthFormDynamic}
+          />
+        )}
         <InformModal modalAction={props.ModalAction} />
       </div>
     </div>

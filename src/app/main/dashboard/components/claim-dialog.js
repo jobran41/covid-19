@@ -15,8 +15,21 @@ import ellipse from "../ellipse.svg";
 import group from "../group.svg";
 
 const predefinedResponses = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  {
+    title: "Cas suspect (score > 4) / urgent (rappeler le patient) :",
+    text:
+      "Votre dossier a été envoyé au SAMU pour une meilleure prise en charge. Si un prélèvement sera jugé nécessaire, on vous contactera. Entre temps, restez dans votre chambre et évitez tout contact avec les membres de votre famille."
+  },
+  {
+    title: "Cas non suspect (score < 4) sans notion d’exposition :",
+    text:
+      "Votre état ne semble pas préoccupant. Protégez-vous et protégez les autres en restant chez vous. En cas de modification de votre état de santé veuillez nous re-contacter."
+  },
+  {
+    title: "Notion d’exposition sans symptômes :",
+    text:
+      "Votre état ne semble pas préoccupant actuellement, toutefois une mise en quarantaine de 14 jours est nécessaire. Restez dans votre chambre et évitez tout contact avec les membres de votre famille."
+  }
 ];
 
 const ClaimDialog = ({
@@ -144,21 +157,21 @@ const ClaimDialog = ({
           case "CATEGORY_GENERAL":
             return (
               <div>
-                <h3>{index + 1}.Quéstions génarales</h3>
+                <h3>{index + 1}.Questions générales</h3>
                 {renderQuestions(cat)}
               </div>
             );
           case "CATEGORY_ANTECEDENT":
             return (
               <div>
-                <h3>{index + 1}.Quéstions médicales</h3>
+                <h3>{index + 1}.Questions médicales</h3>
                 {renderQuestions(cat)}
               </div>
             );
           case "CATEGORY_SYMPTOMS":
             return (
               <div>
-                <h3>{index + 1}.les symptomes</h3>
+                <h3>{index + 1}.Les symptômes</h3>
                 {renderQuestions(cat)}
               </div>
             );
@@ -217,7 +230,10 @@ const ClaimDialog = ({
                   onChange={handleChange}
                 >
                   {predefinedResponses.map(response => (
-                    <MenuItem value={response}>{response}</MenuItem>
+                    <MenuItem value={response}>
+                      <h5>{response.title}</h5>
+                      <div>{response.text}</div>
+                    </MenuItem>
                   ))}
                 </Select>
                 <TextField
@@ -228,7 +244,7 @@ const ClaimDialog = ({
                   multiline
                   rows="4"
                   variant="outlined"
-                  value={response}
+                  value={response.text}
                   onChange={handleChange}
                 />
               </div>
@@ -297,18 +313,19 @@ const ClaimDialog = ({
             </button>
             <Send />
             <h2> Merci Beaucoup docteur!</h2>
+            <div>Le document à été traité avec succés…..</div>
           </div>
           <Divider />
           <div className="issent-actions">
             <Button variant="outlined" size="small" onClick={onClose}>
-              reviens au dashboard
+              revenir au dashboard
             </Button>
             <Button
               className="issent-actions-btn"
               size="large"
               onClick={onClickNext}
             >
-              traiter la réclamation suivant
+              traiter le dossier suivant
             </Button>
           </div>
         </div>
