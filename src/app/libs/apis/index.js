@@ -21,14 +21,16 @@ export const getAllPatients = async () => {
 };
 
 export const patchPatient = async (status, guid) => {
-  console.log("guid", guid);
-  const response = await axios
+  console.log("guid,status", guid,status);
+  if(guid){
+    const response = await axios
     .patch(`https://api.ensembletn.beecoop.co/api/v1/secured/patient/${guid}`, {
       status: status
     })
     .catch(err => {
-      throw new Error(err);
+      alert(err)
+     // throw new Error(err);
     });
-
-  return response;
+    return response;
+  }
 };
