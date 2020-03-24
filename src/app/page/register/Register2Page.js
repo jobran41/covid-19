@@ -66,13 +66,19 @@ const Login = props => {
           <img className="logo" src={logo} alt="logo" />
         </div>
         <div className="go-home">
-          <button onClick={()=>props.history.push("/welcome")} className="homepage">Retour à la page d'accueil</button>
+          <button
+            onClick={() => props.history.push("/welcome")}
+            className="homepage"
+          >
+            Retour à la page d'accueil
+          </button>
         </div>
       </div>
       <div className="login-text">
-        <h1>Connectez-vous à votre espace docteur</h1>
+        <h1>Connectez-vous pour accéder à l'espace docteur</h1>
         <h4>
-          Cet espace vous permet de voir les demandes envoyées par les citoyens
+          Cet espace vous permet de voir les demandes envoyées par les patients
+          et les traiter chronologiquement.
         </h4>
       </div>
       <Formik
@@ -153,7 +159,7 @@ const Login = props => {
                   disabled={isSubmitting}
                   onClick={submitForm}
                 >
-                  Connexion
+                  Valider
                 </Button>
                 {/*<Button*/}
                 {/*  variant="contained"*/}

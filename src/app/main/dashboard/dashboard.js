@@ -8,7 +8,7 @@ import ClaimDialog from "./components/claim-dialog";
 
 import "./dashboard.scss";
 
-const listOfStatus = ["non-traité", "en cours de traitment", "traité"];
+const listOfStatus = ["non-traité", "en cours de traitement", "traité"];
 
 const Dashboard = () => {
   const [visible, setVisible] = useState(false);
@@ -70,8 +70,8 @@ const Dashboard = () => {
     <div className="dashboard">
       <Container maxWidth="md">
         <header>
-          <h2>Bienvenu au Dashboard des docteurs!</h2>
-          <p>Cliquez au-dessous pour commoncer a traiter les reclamations</p>
+          <h2>Bienvenue au dashboard du corp médical!</h2>
+          <p>Cliquez sur "traiter un dossier" pour traiter un patient</p>
 
           <Button
             variant="outlined"
@@ -89,7 +89,7 @@ const Dashboard = () => {
               });
             }}
           >
-            traiter une reclamation
+            Traiter un dossier
           </Button>
         </header>
         <Grid className="columns" container spacing={4}>
