@@ -28,8 +28,8 @@ export const patchPatient = async (status, guid) => {
       flag: status
     })
     .catch(err => {
-      alert(err)
-     // throw new Error(err);
+      //alert(err)
+      throw new Error(err);
     });
     return response;
   }
