@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import { ModalAction, addInformer } from "app/store/actions";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Sms from "./sms"
+
 import "../../scss/welcome_page.scss";
 import navbar from "../../store/reducers/fuse/navbar.reducer";
 // import logo from "../../img/logo.svg";
@@ -177,7 +179,9 @@ const Welcome = props => {
     console.log("newData", newData);
     axios
       .post("https://api.ensembletn.beecoop.co/api/v1/patient", { ...newData })
-      .then(res => history.push("/envoiyer/maladie"));
+      .then(res =>{
+        props.ModalAction("sms");
+      }) 
   };
   return (
     <div className="welcome-page">
@@ -277,6 +281,7 @@ const Welcome = props => {
           />
         )}
         <InformModal modalAction={props.ModalAction} />
+        <Sms history={history} modalAction={props.ModalAction} />
       </div>
     </div>
   );

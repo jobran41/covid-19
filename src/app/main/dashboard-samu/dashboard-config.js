@@ -26,7 +26,7 @@ export const BoardSamuConfig = {
   auth: authRoles.samu,
   routes: [
     {
-      path: "/dashboardsamu",
+      path: "/samu",
       component: DashboardSAMU
     }
   ]

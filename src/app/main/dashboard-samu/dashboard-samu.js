@@ -70,7 +70,7 @@ const DashboardSAMU = () => {
     <div className="dashboard">
       <Container maxWidth="md">
         <header>
-          <h2>Bienvenue au dashboard du corp médical!</h2>
+          <h2>Bienvenue au dashboard de Samu</h2>
           <p>Cliquez sur "traiter un dossier" pour traiter un patient</p>
 
           <Button
