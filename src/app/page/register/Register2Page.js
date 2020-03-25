@@ -75,7 +75,7 @@ const Login = props => {
         </div>
       </div>
       <div className="login-text">
-        <h1>Connectez-vous pour accéder à l'espace docteur</h1>
+        <h1>Connectez-vous pour accéder à l'espace {props.location.state.type}</h1>
         <h4>
           Cet espace vous permet de voir les demandes envoyées par les patients
           et les traiter chronologiquement.

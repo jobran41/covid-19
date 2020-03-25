@@ -81,7 +81,6 @@ const Dashboard = () => {
             onClick={() => {
               setVisible(true);
               getPatient().then(res => {
-                console.log('res ', res)
                 setPatient(get(res, "data.payload.patient", {}));
                  /* patchPatient(
                   "IN_PROGRESS",

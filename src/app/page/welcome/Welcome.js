@@ -42,6 +42,19 @@ const useStyles = makeStyles(theme => ({
   },
   control: {
     padding: theme.spacing(2)
+  },
+  samu:{
+    width: "80px",
+    background: "rebeccapurple",
+    color: "white",
+    padding: "10px",
+    display:"flex",
+    alignItems:"center",
+    position: "absolute",
+    top: "50%"
+  },
+  subsamu:{
+    color: "white",
   }
 }));
 const Welcome = props => {
@@ -69,7 +82,8 @@ const Welcome = props => {
       src: "assets/images/welcome/doctor.png",
       handleClick: () => {
         history.push({
-          pathname: "/login"
+          pathname: "/login",
+          state:{type:"docteur"}
         });
       }
     },
@@ -100,6 +114,18 @@ const Welcome = props => {
       }
     }
   ];
+  const renderLabelCategroy = cat => {
+    switch (cat) {
+      case "CATEGORY_GENERAL":
+        return "Questions générale";
+      case "CATEGORY_SYMPTOMS":
+        return "Les symptômes";
+      case "CATEGORY_ANTECEDENT":
+        return "Questions médicale";
+      default:
+        break;
+    }
+  };
   useEffect(() => {
     axios
       .get("https://api.ensembletn.beecoop.co/api/v1/question")
@@ -111,15 +137,11 @@ const Welcome = props => {
             currentSome = currentSome + res.data.payload.questions[key].length;
             cleanData.push({
               section: key,
+              label: renderLabelCategroy(key),
               key: key,
               questions: res.data.payload.questions[key]
             });
           }
-          /*           const someOfArray=cleanData.reduce((curr,prev)=>{
-            console.log('curr', JSON.stringify(curr))
-            return curr.length+prev
-          },0) */
-          console.log("currentSome", currentSome);
           setquestion(cleanData);
           setlengthFormStatic(currentSome);
         } else {
@@ -151,14 +173,22 @@ const Welcome = props => {
     setReponse(newResponse);
   };
   const submitForm = data => {
-    console.log("data submitForm", data);
-    const newData={...responses,...data}
-    console.log('newData', newData)
-    axios.post('https://api.ensembletn.beecoop.co/api/v1/patient',{...newData})
-    .then(res=>history.push("/envoiyer/maladie"))
+    const newData = { ...responses, ...data };
+    console.log("newData", newData);
+    axios
+      .post("https://api.ensembletn.beecoop.co/api/v1/patient", { ...newData })
+      .then(res => history.push("/envoiyer/maladie"));
   };
   return (
     <div className="welcome-page">
+      <div className={classes.samu} >
+        <button
+          onClick={() => props.history.push("/login",{type:"samu"})}
+          className={classes.subsamu}
+        >
+          Samu
+        </button>
+      </div>
       <div className="main-navbar">
         <div className="logo-container">
           {/* <img className="logo" src={logo} alt="logo" /> */}
