@@ -79,7 +79,7 @@ const ClaimDialog = ({
         return "stable-active";
 
       default:
-        break;
+        return "urgent-active";
     }
   };
 
@@ -104,7 +104,7 @@ const ClaimDialog = ({
           return "oui";
 
         default:
-          break;
+          return "neutre";
       }
     } else {
       switch (value) {
@@ -115,7 +115,7 @@ const ClaimDialog = ({
           return "oui";
 
         default:
-          break;
+          return "N/A";
       }
     }
   };
