@@ -10,7 +10,7 @@ import AppContext from './AppContext';
 import routes from './fuse-configs/routesConfig';
 import {create} from 'jss';
 import {StylesProvider, jssPreset, createGenerateClassName} from '@material-ui/styles';
-
+import "../app/scss/main-layout.scss"
 const jss = create({
     ...jssPreset(),
     plugins       : [...jssPreset().plugins, jssExtend()],

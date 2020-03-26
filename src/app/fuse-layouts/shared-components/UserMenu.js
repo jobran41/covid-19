@@ -40,7 +40,7 @@ function UserMenu(props)
                         {user.data.displayName}
                     </Typography>
                     <Typography className="text-11 capitalize" color="textSecondary">
-                        {user.role.toString()}
+                        {/* user.role.toString() */}
                     </Typography>
                 </div>
 
@@ -80,7 +80,7 @@ function UserMenu(props)
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <MenuItem component={Link} to="/pages/profile" onClick={userMenuClose}>
+       {/*                  <MenuItem component={Link} to="/pages/profile" onClick={userMenuClose}>
                             <ListItemIcon className="min-w-40">
                                 <Icon>account_circle</Icon>
                             </ListItemIcon>
@@ -91,7 +91,8 @@ function UserMenu(props)
                                 <Icon>mail</Icon>
                             </ListItemIcon>
                             <ListItemText className="pl-0" primary="Inbox"/>
-                        </MenuItem>
+                        </MenuItem> */}
+
                         <MenuItem
                             onClick={() => {
                                 dispatch(authActions.logoutUser());
